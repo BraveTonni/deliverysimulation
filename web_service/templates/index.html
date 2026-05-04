@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartNav Pro Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Включаем class-based dark mode (вместо media query по умолчанию)
+        tailwind.config = { darkMode: 'class' };
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-hidden">
+
+    <div class="flex h-screen w-screen relative">
+        <!-- SIDEBAR -->
+        <aside id="sidebar" class="fixed left-0 top-0 h-full w-[400px] z-[1000] sidebar-panel border-r border-slate-200 dark:border-slate-800 transition-transform duration-500">
+            <!-- Влитая кнопка-язычок -->
+            <div id="toggleBtn" class="toggle-handle bg-white dark:bg-[#0f172a] border-y border-r border-slate-200 dark:border-slate-800">
+                <svg id="toggleIcon" class="w-4 h-4 text-slate-500 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7" />
+                </svg>
+            </div>
+
+            <div class="p-8 h-full flex flex-col">
+                <div class="flex items-center justify-between mb-8">
+                    <h1 class="text-2xl font-extrabold bg-gradient-to-r from-indigo-600 to-violet-500 bg-clip-text text-transparent">SmartNav Pro</h1>
+                    <div class="flex items-center gap-2">
+                        <span id="wsStatus" class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#10b981]"></span>
+                        <span class="text-[10px] font-bold text-slate-400 dark:text-slate-500 tracking-tighter uppercase">Health: OK</span>
+                    </div>
+                </div>
+
+                <!-- Prometheus Metrics -->
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">Ops / Sec</p>
+                        <p class="text-xl font-extrabold" id="opsVal">0.56</p>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">AVG ETA</p>
+                        <p class="text-xl font-extrabold text-indigo-500" id="etaVal">24m</p>
+                    </div>
+                </div>
+
+                <!-- Navigation Tabs -->
+                <div class="flex p-1.5 bg-slate-100 dark:bg-slate-800/50 rounded-2xl mb-8">
+                    <button data-tab="route" class="tab-btn tab-active flex-1 py-2.5 rounded-xl text-xs font-extrabold uppercase transition-all">Маршрут</button>
+                    <button data-tab="couriers" class="tab-btn flex-1 py-2.5 rounded-xl text-xs font-extrabold uppercase text-slate-500 transition-all">Курьеры</button>
+                    <button data-tab="history" class="tab-btn flex-1 py-2.5 rounded-xl text-xs font-extrabold uppercase text-slate-500 transition-all">Заказы</button>
+                </div>
+
+                <div class="flex-grow overflow-y-auto pr-2">
+                    <!-- Couriers Tab -->
+                    <div id="couriersContent" class="tab-pane hidden space-y-6">
+                        <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase block mb-2 px-1">Имя курьера</label>
+                                    <input type="text" id="courierName" placeholder="Напр. Иван" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none placeholder:text-slate-500 dark:placeholder:text-slate-450">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase block mb-2 px-1">Стартовый узел (0-49)</label>
+                                    <input type="number" id="startNodeId" value="0" min="0" max="49" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none">
+                                </div>
+                                <button id="createCourierBtn" class="w-full py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl font-bold text-sm shadow-lg shadow-emerald-500/30 active:scale-95 transition-all uppercase tracking-wider">
+                                    Добавить курьера
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Активные курьеры</h3>
+                            <div id="couriersList" class="space-y-3">
+                                <!-- Couriers will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Route Tab -->
+                    <div id="routeContent" class="tab-pane space-y-6">
+                        <div class="p-6 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-xl shadow-slate-200/50 dark:shadow-none">
+                            <div class="space-y-5">
+                                <div>
+                                    <label class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase block mb-2 px-1">Откуда</label>
+                                    <input type="text" id="startInput" placeholder="Напр. Москва" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none placeholder:text-slate-500 dark:placeholder:text-slate-450">
+                                </div>
+                                <div>
+                                    <label class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase block mb-2 px-1">Куда</label>
+                                    <input type="text" id="endInput" placeholder="Напр. Химки" class="w-full bg-slate-50 dark:bg-slate-800/50 border border-slate-100 dark:border-slate-700 rounded-xl px-4 py-3.5 text-sm focus:ring-2 focus:ring-indigo-500 outline-none placeholder:text-slate-500 dark:placeholder:text-slate-450">
+                                </div>
+                                <button id="createOrderBtn" class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-bold text-sm shadow-lg shadow-indigo-500/30 active:scale-95 transition-all uppercase tracking-wider">
+                                    Создать заказ
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <h3 class="text-[10px] font-black text-slate-400 uppercase tracking-widest px-1">Live Статусы</h3>
+                            <div id="activeOrders" class="space-y-3">
+                                <!-- Список заказов -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Таблица заказов (History) -->
+                    <div id="historyContent" class="tab-pane hidden overflow-x-auto">
+                        <table class="w-full text-left text-[11px]">
+                            <thead class="text-slate-400 border-b border-slate-100 dark:border-slate-800">
+                                <tr>
+                                    <th class="py-3 px-2">ID</th>
+                                    <th class="py-3 px-2">STATUS</th>
+                                    <th class="py-3 px-2 text-right">RETRY</th>
+                                </tr>
+                            </thead>
+                            <tbody id="historyTableBody" class="divide-y divide-slate-50 dark:divide-slate-800">
+                                <!-- Rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="text-[9px] font-black text-red-500 uppercase tracking-tighter" id="dlqMonitor">DLQ: 0</div>
+                        <button id="simulateBtn" class="text-[9px] px-2 py-1 rounded bg-amber-500/20 text-amber-500 font-bold uppercase hover:bg-amber-500/30 transition-colors" title="Создать тестовых курьеров">
+                            Эмуляция
+                        </button>
+                    </div>
+                    <button id="themeToggle" class="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400 hover:text-indigo-500 transition-colors">
+                        Dark Mode
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAP -->
+        <main id="map" class="flex-grow z-0"></main>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

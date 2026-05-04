@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+/* Глобальные переменные для светлой темы (по умолчанию) */
+:root {
+    --bg-main: #f8fafc;
+    --bg-sidebar: rgba(255, 255, 255, 0.92);
+    --bg-card: #ffffff;
+    --bg-input: #f1f5f9;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --accent: #4f46e5;
+}
+
+/* Тёмная тема — перезаписываем переменные */
+.dark {
+    --bg-main: #020617;
+    --bg-sidebar: rgba(15, 23, 42, 0.96);
+    --bg-card: #0f172a;
+    --bg-input: #1e293b;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #1e293b;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* Только нужные элементы с плавной сменой темы */
+.sidebar-panel,
+.stats-card,
+.form-container,
+.order-item,
+.toggle-handle,
+.tab-active,
+input,
+button,
+table,
+thead,
+tbody,
+tr,
+td,
+th {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Сайдбар */
+.sidebar-panel {
+    background-color: var(--bg-sidebar);
+    border-color: var(--border-color);
+    backdrop-filter: blur(16px);
+}
+
+/* Карточки и элементы заказов */
+.stats-card,
+.form-container,
+.order-item {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+}
+
+/* Поля ввода */
+input {
+    background-color: var(--bg-input) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color);
+}
+
+input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* Кнопка-язычок сайдбара */
+.toggle-handle {
+    position: absolute;
+    right: -32px;
+    top: 32px;
+    width: 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 16px 16px 0;
+    cursor: pointer;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-left: none;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.06);
+    z-index: 100;
+}
+
+.dark .toggle-handle {
+    box-shadow: 4px 0 16px rgba(0, 0, 0, 0.5);
+}
+
+/* Табы */
+.tab-btn {
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+}
+
+.tab-active {
+    background-color: var(--bg-card) !important;
+    color: var(--accent) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.dark .tab-active {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Скролл */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 20px;
+}
+
+/* Анимация появления новых заказов */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.order-item {
+    animation: slideIn 0.3s ease forwards;
+}
+
+/* Текст-хелпер */
+.text-muted {
+    color: var(--text-muted);
+}
+
+/* Карта: убираем лишние переходы для tileLayer */
+.leaflet-container {
+    background-color: var(--bg-main);
+}
+
+/* Светлая тема карты */
+html:not(.dark) .leaflet-container {
+    background-color: #e8e0d8;
+}
+
+/* Тёмная тема карты */
+html.dark .leaflet-container {
+    background-color: #1a1a2e;
+}
+
+/* Courier marker styling */
+.courier-marker {
+    background: transparent;
+    border: none;
+}
+
+.courier-marker > div {
+    transition: transform 0.3s ease;
+}
+
+.courier-marker:hover > div {
+    transform: scale(1.2);
+}

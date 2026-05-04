@@ -1,0 +1,125 @@
+version: '3.8'
+
+services:
+  postgres_order:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dostavka_order
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_order_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  postgres_courier:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dostavka_courier
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_courier_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  order_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.order
+    ports:
+      - "8001:8001"
+    environment:
+      DB_HOST: postgres_order
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: dostavka_order
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      COURIER_SERVICE_URL: http://courier_service:8002
+      LOG_FILE: /app/logs/order_service.log
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      postgres_order:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  courier_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.courier
+    ports:
+      - "8002:8002"
+    environment:
+      DB_HOST: postgres_courier
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_NAME: dostavka_courier
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      ORDER_SERVICE_URL: http://order_service:8001
+      LOG_FILE: /app/logs/courier_service.log
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      postgres_courier:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      order_service:
+        condition: service_started
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+  web_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    ports:
+      - "5000:5000"
+    environment:
+      ORDER_SERVICE_URL: http://order_service:8001
+      COURIER_SERVICE_URL: http://courier_service:8002
+      LOG_DIR: /app/logs
+    volumes:
+      - ./logs:/app/logs
+    depends_on:
+      order_service:
+        condition: service_started
+      courier_service:
+        condition: service_started
+
+volumes:
+  postgres_order_data:
+  postgres_courier_data:

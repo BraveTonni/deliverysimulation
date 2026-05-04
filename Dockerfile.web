@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir uv
+
+COPY pyproject.toml ./
+
+RUN uv pip install --system fastapi uvicorn[standard] sqlalchemy[asyncio] asyncpg pydantic pydantic-settings prometheus-client redis python-dotenv httpx jinja2
+
+COPY shared/ ./shared/
+COPY web_service/ ./web_service/
+
+ENV PYTHONPATH=/app
+
+EXPOSE 5000
+
+CMD ["uvicorn", "web_service.main:app", "--host", "0.0.0.0", "--port", "5000"]

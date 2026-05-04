@@ -1,0 +1,1792 @@
+prometheus-1     | time=2026-05-04T09:03:36.296Z level=INFO source=main.go:1678 msg="updated GOGC" old=100 new=75
+prometheus-1     | time=2026-05-04T09:03:36.296Z level=INFO source=main.go:744 msg="Leaving GOMAXPROCS=12: CPU quota undefined" component=automaxprocs
+order_service-1  | INFO:     Started server process [1]
+order_service-1  | INFO:     Waiting for application startup.
+order_service-1  | INFO:     Application startup complete.
+order_service-1  | INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+order_service-1  | INFO:     172.18.0.8:57254 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1  | INFO:     172.18.0.8:57268 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1  | INFO:     172.18.0.2:54240 - "GET /metrics HTTP/1.1" 200 OK
+order_service-1  | INFO:     172.18.0.8:57276 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1  | INFO:     172.18.0.8:58124 - "GET /api/orders/ HTTP/1.1" 200 OK
+prometheus-1     | time=2026-05-04T09:03:36.296Z level=INFO source=memlimit.go:198 msg="GOMEMLIMIT is updated" component=automemlimit package=github.com/KimMachineGun/automemlimit/memlimit GOMEMLIMIT=14808770150 previous=9223372036854775807
+prometheus-1     | time=2026-05-04T09:03:36.296Z level=INFO source=main.go:851 msg="Starting Prometheus Server" mode=server version="(version=3.11.3, branch=HEAD, revision=eb173f5256d4022afba1e9bc3d19740a76859fae)"
+prometheus-1     | time=2026-05-04T09:03:36.296Z level=INFO source=main.go:856 msg="operational information" build_context="(go=go1.26.2, platform=linux/amd64, user=root@83aad33dd38e, date=20260427-14:45:32, tags=netgo,builtinassets)" host_details="(Linux 6.17.7-arch1-1 #1 SMP PREEMPT_DYNAMIC Sun, 02 Nov 2025 17:27:22 +0000 x86_64 28ab873b567d (none))" fd_limits="(soft=524287, hard=524288)" vm_limits="(soft=unlimited, hard=unlimited)"
+prometheus-1     | time=2026-05-04T09:03:36.377Z level=INFO source=web.go:710 msg="Start listening for connections" component=web address=0.0.0.0:9090
+prometheus-1     | time=2026-05-04T09:03:36.378Z level=INFO source=main.go:1410 msg="Starting TSDB ..."
+prometheus-1     | time=2026-05-04T09:03:36.378Z level=INFO source=tls_config.go:354 msg="Listening on" component=web address=[::]:9090
+prometheus-1     | time=2026-05-04T09:03:36.378Z level=INFO source=tls_config.go:357 msg="TLS is disabled." component=web http2=false address=[::]:9090
+prometheus-1     | time=2026-05-04T09:03:36.379Z level=INFO source=head.go:698 msg="Replaying on-disk memory mappable chunks if any" component=tsdb
+prometheus-1     | time=2026-05-04T09:03:36.379Z level=INFO source=head.go:784 msg="On-disk memory mappable chunks replay completed" component=tsdb duration=900ns
+prometheus-1     | time=2026-05-04T09:03:36.379Z level=INFO source=head.go:792 msg="Replaying WAL, this may take a while" component=tsdb
+prometheus-1     | time=2026-05-04T09:03:36.379Z level=INFO source=head.go:865 msg="WAL segment loaded" component=tsdb segment=0 maxSegment=0 duration=196.13µs
+prometheus-1     | time=2026-05-04T09:03:36.379Z level=INFO source=head.go:902 msg="WAL replay completed" component=tsdb checkpoint_replay_duration=8.049µs wal_replay_duration=206.087µs wbl_replay_duration=120ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=900ns total_replay_duration=227.778µs
+prometheus-1     | time=2026-05-04T09:03:36.381Z level=INFO source=main.go:1431 msg="filesystem information" fs_type=EXT4_SUPER_MAGIC
+prometheus-1     | time=2026-05-04T09:03:36.381Z level=INFO source=main.go:1434 msg="TSDB started"
+order_service-1  | INFO:     172.18.0.8:58134 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1  | INFO:     172.18.0.2:44126 - "GET /metrics HTTP/1.1" 200 OK
+prometheus-1     | time=2026-05-04T09:03:36.381Z level=INFO source=main.go:1632 msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+prometheus-1     | time=2026-05-04T09:03:36.381Z level=INFO source=main.go:1048 msg="TSDB retention updated" duration=15d size=0B percentage=0
+prometheus-1     | time=2026-05-04T09:03:36.381Z level=INFO source=main.go:1671 msg="Completed loading of configuration file" db_storage=15.185µs remote_storage=1.342µs web_handler=403ns query_engine=578ns scrape=208.31µs scrape_sd=30.956µs notify=773ns notify_sd=521ns rules=1.13µs tracing=2.685µs filename=/etc/prometheus/prometheus.yml totalDuration=514.193µs
+prometheus-1     | time=2026-05-04T09:03:36.381Z level=INFO source=main.go:1395 msg="Server is ready to receive web requests."
+prometheus-1     | time=2026-05-04T09:03:36.381Z level=INFO source=manager.go:209 msg="Starting rule manager..." component="rule manager"
+postgres_courier-1  | The files belonging to this database system will be owned by user "postgres".
+postgres_courier-1  | This user must also own the server process.
+web_service-1       | INFO:     Started server process [1]
+postgres_courier-1  | 
+postgres_courier-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres_courier-1  | The default database encoding has accordingly been set to "UTF8".
+postgres_courier-1  | The default text search configuration will be set to "english".
+postgres_courier-1  | 
+redis-1          | 1:C 04 May 2026 09:03:36.295 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+redis-1             | 1:C 04 May 2026 09:03:36.295 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1             | 1:C 04 May 2026 09:03:36.295 * Redis version=7.4.8, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1             | 1:C 04 May 2026 09:03:36.295 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+web_service-1       | INFO:     Waiting for application startup.
+web_service-1       | INFO:     Application startup complete.
+web_service-1       | INFO:     Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+order_service-1  | INFO:     172.18.0.8:58138 - "POST /api/orders/clear HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:58154 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:37452 - "POST /api/orders/ HTTP/1.1" 200 OK
+postgres_courier-1  | Data page checksums are disabled.
+postgres_courier-1  | 
+postgres_courier-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres_courier-1  | creating subdirectories ... ok
+postgres_courier-1  | selecting dynamic shared memory implementation ... posix
+postgres_courier-1  | selecting default max_connections ... 100
+postgres_courier-1  | selecting default shared_buffers ... 128MB
+postgres_courier-1  | selecting default time zone ... UTC
+order_service-1     | [Order 1] Received assign request: route=None, type=<class 'NoneType'>
+postgres_courier-1  | creating configuration files ... ok
+postgres_courier-1  | running bootstrap script ... ok
+postgres_courier-1  | sh: locale: not found
+postgres_courier-1  | 2026-05-04 09:03:36.576 UTC [35] WARNING:  no usable system locales were found
+postgres_courier-1  | performing post-bootstrap initialization ... ok
+postgres_courier-1  | syncing data to disk ... ok
+postgres_courier-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres_courier-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres_courier-1  | 
+postgres_courier-1  | 
+postgres_courier-1  | Success. You can now start the database server using:
+postgres_courier-1  | 
+postgres_courier-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres_courier-1  | 
+postgres_courier-1  | waiting for server to start....2026-05-04 09:03:36.862 UTC [41] LOG:  starting PostgreSQL 15.17 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+redis-1             | 1:M 04 May 2026 09:03:36.296 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+redis-1             | 1:M 04 May 2026 09:03:36.296 * monotonic clock: POSIX clock_gettime
+redis-1             | 1:M 04 May 2026 09:03:36.296 * Running mode=standalone, port=6379.
+redis-1             | 1:M 04 May 2026 09:03:36.296 * Server initialized
+redis-1             | 1:M 04 May 2026 09:03:36.296 * Ready to accept connections tcp
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+courier_service-1   | INFO:     Started server process [1]
+courier_service-1   | INFO:     Waiting for application startup.
+courier_service-1   | INFO:     Application startup complete.
+postgres_order-1    | The files belonging to this database system will be owned by user "postgres".
+courier_service-1   | INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+order_service-1     | [Order 1] Found 5 couriers
+web_service-1       | ERROR:web_service.main:Connection error: All connection attempts failed
+order_service-1     |   Courier 1: status=idle
+web_service-1       | INFO:     172.18.0.1:55098 - "GET /api/couriers HTTP/1.1" 503 Service Unavailable
+order_service-1     |   Courier 2: status=idle
+postgres_order-1    | This user must also own the server process.
+order_service-1     |   Courier 3: status=idle
+order_service-1     |   Courier 4: status=idle
+order_service-1     |   Courier 5: status=idle
+order_service-1     | [Order 1] Trying courier 1 (status=idle)
+order_service-1     | [Order 1] Assign response: 200 - {"status":"assigned","courier_id":1,"order_id":1,"route":[0,7]}
+order_service-1     | [Order 1] assign_data keys: dict_keys(['status', 'courier_id', 'order_id', 'route']), status: assigned
+postgres_courier-1  | 2026-05-04 09:03:36.863 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+order_service-1     | [OrderService] assign_courier called: order_id=1, courier_id=1, route=[0, 7], len=2
+postgres_courier-1  | 2026-05-04 09:03:36.864 UTC [44] LOG:  database system was shut down at 2026-05-04 09:03:36 UTC
+postgres_courier-1  | 2026-05-04 09:03:36.867 UTC [41] LOG:  database system is ready to accept connections
+postgres_courier-1  |  done
+postgres_courier-1  | server started
+postgres_courier-1  | CREATE DATABASE
+postgres_courier-1  | 
+postgres_courier-1  | 
+postgres_courier-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres_courier-1  | 
+postgres_courier-1  | waiting for server to shut down....2026-05-04 09:03:36.998 UTC [41] LOG:  received fast shutdown request
+postgres_courier-1  | 2026-05-04 09:03:36.998 UTC [41] LOG:  aborting any active transactions
+postgres_courier-1  | 2026-05-04 09:03:37.000 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+postgres_courier-1  | 2026-05-04 09:03:37.000 UTC [42] LOG:  shutting down
+postgres_courier-1  | 2026-05-04 09:03:37.000 UTC [42] LOG:  checkpoint starting: shutdown immediate
+postgres_courier-1  | 2026-05-04 09:03:37.017 UTC [42] LOG:  checkpoint complete: wrote 921 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.009 s, total=0.018 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4239 kB, estimate=4239 kB
+postgres_courier-1  | 2026-05-04 09:03:37.020 UTC [41] LOG:  database system is shut down
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+courier_service-1   | INFO:     172.18.0.8:47928 - "GET /api/couriers/ HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:55106 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | ERROR:web_service.main:Connection error: All connection attempts failed
+web_service-1       | INFO:     172.18.0.1:55106 - "GET /api/couriers HTTP/1.1" 503 Service Unavailable
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:55116 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:55114 - "GET /api/couriers HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Updated order with route: [0, 7]
+courier_service-1   | INFO:     172.18.0.8:47936 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:47944 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:47954 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.2:33568 - "GET /metrics HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:54266 - "GET /api/graph/nodes HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:54274 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:54282 - "GET /api/couriers/ HTTP/1.1" 200 OK
+postgres_courier-1  |  done
+courier_service-1   | INFO:     172.18.0.8:54296 - "GET /api/couriers/ HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:55116 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:55130 - "WebSocket /ws" [accepted]
+web_service-1       | INFO:     connection open
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:55116 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:55114 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+postgres_order-1    | 
+postgres_order-1    | The database cluster will be initialized with locale "en_US.utf8".
+postgres_order-1    | The default database encoding has accordingly been set to "UTF8".
+postgres_order-1    | The default text search configuration will be set to "english".
+postgres_order-1    | 
+postgres_order-1    | Data page checksums are disabled.
+postgres_order-1    | 
+postgres_order-1    | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres_order-1    | creating subdirectories ... ok
+postgres_order-1    | selecting dynamic shared memory implementation ... posix
+postgres_order-1    | selecting default max_connections ... 100
+postgres_order-1    | selecting default shared_buffers ... 128MB
+postgres_order-1    | selecting default time zone ... UTC
+postgres_order-1    | creating configuration files ... ok
+postgres_order-1    | running bootstrap script ... ok
+postgres_order-1    | sh: locale: not found
+postgres_order-1    | 2026-05-04 09:03:36.573 UTC [35] WARNING:  no usable system locales were found
+postgres_order-1    | performing post-bootstrap initialization ... ok
+postgres_order-1    | initdb: warning: enabling "trust" authentication for local connections
+order_service-1     | INFO:     172.18.0.7:37452 - "POST /api/orders/1/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:37452 - "POST /api/orders/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:54304 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:54314 - "POST /api/couriers/clear HTTP/1.1" 200 OK
+courier_service-1   | === SIMULATE-FULL: courier_count=5, order_count=20 ===
+courier_service-1   | INFO:     172.18.0.8:54316 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:54324 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Создаём 20 заказов...
+courier_service-1   | Создан заказ 1: ресторан=0, клиент=7, статус=200
+courier_service-1   | Маршрут A*: 0 -> 7 = None, dist=inf
+web_service-1       | INFO:     172.18.0.1:55114 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:48304 - "WebSocket /api/orders/ws/web_client" 403
+web_service-1       | INFO:     connection rejected (403 Forbidden)
+web_service-1       | INFO:     connection closed
+web_service-1       | INFO:     172.18.0.1:55114 - "GET / HTTP/1.1" 200 OK
+web_service-1       | INFO:     connection closed
+web_service-1       | INFO:     172.18.0.1:55114 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+web_service-1       | INFO:     172.18.0.1:55116 - "GET /static/css/style.css HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:48320 - "GET /static/js/script.js HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/graph/nodes "HTTP/1.1 200 OK"
+web_service-1       | INFO:     172.18.0.1:47544 - "GET /api/graph/nodes HTTP/1.1" 200 OK
+courier_service-1   | Полный маршрут для курьера 5: None
+postgres_courier-1  | server stopped
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+postgres_courier-1  | 
+postgres_courier-1  | PostgreSQL init process complete; ready for start up.
+postgres_courier-1  | 
+postgres_courier-1  | 2026-05-04 09:03:37.114 UTC [1] LOG:  starting PostgreSQL 15.17 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres_courier-1  | 2026-05-04 09:03:37.114 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres_courier-1  | 2026-05-04 09:03:37.114 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres_courier-1  | 2026-05-04 09:03:37.115 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres_courier-1  | 2026-05-04 09:03:37.116 UTC [57] LOG:  database system was shut down at 2026-05-04 09:03:37 UTC
+postgres_courier-1  | 2026-05-04 09:03:37.119 UTC [1] LOG:  database system is ready to accept connections
+courier_service-1   | INFO:     172.18.0.6:50196 - "GET /api/couriers/ HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47544 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47544 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:47572 - "WebSocket /api/orders/ws/web_client" 403
+web_service-1       | INFO:     connection rejected (403 Forbidden)
+web_service-1       | INFO:     connection closed
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+postgres_order-1    | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+web_service-1       | INFO:     172.18.0.1:47544 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Full simulation: 5 couriers, 20 orders
+web_service-1       | INFO:httpx:HTTP Request: POST http://order_service:8001/api/orders/clear "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: POST http://courier_service:8002/api/couriers/clear "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47544 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:47590 - "WebSocket /ws" [accepted]
+web_service-1       | INFO:     connection open
+web_service-1       | INFO:httpx:HTTP Request: POST http://courier_service:8002/api/couriers/simulate-full?courier_count=5&order_count=20 "HTTP/1.1 500 Internal Server Error"
+web_service-1       | INFO:web_service.main:Simulate-full response: 500
+web_service-1       | ERROR:web_service.main:Error: Expecting value: line 1 column 1 (char 0)
+web_service-1       | INFO:     172.18.0.1:47560 - "POST /api/simulate-full HTTP/1.1" 503 Service Unavailable
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /%E2%9C%95 HTTP/1.1" 404 Not Found
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+postgres_order-1    | syncing data to disk ... ok
+postgres_order-1    | 
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 500 Internal Server Error"
+web_service-1       | INFO:web_service.main:Couriers response: 500
+web_service-1       | ERROR:web_service.main:Unexpected error: Expecting value: line 1 column 1 (char 0)
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 503 Service Unavailable
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+courier_service-1   | [assign_order] Received order_id=1, restaurant=0, customer=7, route=None
+order_service-1     | [Order 2] Received assign request: route=[17, 5, 29, 34, 42, 40, 24, 46, 19, 30], type=<class 'list'>
+order_service-1     | [Order 2] Found 5 couriers
+courier_service-1   | Всего курьеров в БД: 5
+courier_service-1   |   Курьер 1: Курьер_1, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 2: Курьер_2, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 3: Курьер_3, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 4: Курьер_4, status=CourierStatus.IDLE, current_order_id=None
+order_service-1     |   Courier 2: status=idle
+order_service-1     |   Courier 3: status=idle
+order_service-1     |   Courier 4: status=idle
+order_service-1     |   Courier 5: status=idle
+order_service-1     |   Courier 1: status=delivering
+order_service-1     | [Order 2] Trying courier 2 (status=idle)
+order_service-1     | [Order 2] Assign response: 200 - {"status":"assigned","courier_id":2,"order_id":2,"route":[17,5,29,34,42,40,24,46,19,30]}
+order_service-1     | [Order 2] assign_data keys: dict_keys(['status', 'courier_id', 'order_id', 'route']), status: assigned
+postgres_order-1    | 
+postgres_order-1    | Success. You can now start the database server using:
+postgres_order-1    | 
+postgres_order-1    |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres_order-1    | 
+postgres_order-1    | waiting for server to start....2026-05-04 09:03:36.863 UTC [41] LOG:  starting PostgreSQL 15.17 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres_order-1    | 2026-05-04 09:03:36.863 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres_order-1    | 2026-05-04 09:03:36.865 UTC [44] LOG:  database system was shut down at 2026-05-04 09:03:36 UTC
+postgres_order-1    | 2026-05-04 09:03:36.867 UTC [41] LOG:  database system is ready to accept connections
+postgres_order-1    |  done
+postgres_order-1    | server started
+postgres_order-1    | CREATE DATABASE
+postgres_order-1    | 
+postgres_order-1    | 
+postgres_order-1    | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres_order-1    | 
+postgres_order-1    | waiting for server to shut down....2026-05-04 09:03:36.994 UTC [41] LOG:  received fast shutdown request
+order_service-1     | [OrderService] assign_courier called: order_id=2, courier_id=2, route=[17, 5, 29, 34, 42, 40, 24, 46, 19, 30], len=10
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 500 Internal Server Error"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Couriers response: 500
+web_service-1       | ERROR:web_service.main:Unexpected error: Expecting value: line 1 column 1 (char 0)
+courier_service-1   |   Курьер 5: Курьер_5, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   | Пытаемся назначить заказ 1 курьеру 1
+courier_service-1   | Маршрут для курьера 1: [0, 7]
+courier_service-1   | [assign_order] Creating emulator for courier 1 to run route
+courier_service-1   | Успешно назначили курьера 1 на заказ 1
+courier_service-1   | INFO:     172.18.0.6:50196 - "POST /api/couriers/assign HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 1: 200 - {"status":"assigned","courier_id":1,"route":[0,7]}
+courier_service-1   | [simulate-full] assign_data for order 1: {'status': 'assigned', 'courier_id': 1, 'route': [0, 7]}
+courier_service-1   | Создан заказ 2: ресторан=17, клиент=30, статус=200
+courier_service-1   | Маршрут A*: 17 -> 30 = [17, 5, 29, 34, 42, 40, 24, 46, 19, 30], dist=1362.6175535722086
+courier_service-1   | Полный маршрут для курьера 5: [40, 42, 34, 29, 5, 17, 17, 5, 29, 34, 42, 40, 24, 46, 19, 30]
+postgres_order-1    | 2026-05-04 09:03:36.994 UTC [41] LOG:  aborting any active transactions
+postgres_order-1    | 2026-05-04 09:03:36.996 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+postgres_order-1    | 2026-05-04 09:03:36.996 UTC [42] LOG:  shutting down
+postgres_order-1    | 2026-05-04 09:03:36.997 UTC [42] LOG:  checkpoint starting: shutdown immediate
+postgres_order-1    | 2026-05-04 09:03:37.017 UTC [42] LOG:  checkpoint complete: wrote 921 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.012 s, total=0.021 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4239 kB, estimate=4239 kB
+postgres_order-1    | 2026-05-04 09:03:37.021 UTC [41] LOG:  database system is shut down
+postgres_order-1    |  done
+postgres_order-1    | server stopped
+postgres_order-1    | 
+postgres_order-1    | PostgreSQL init process complete; ready for start up.
+order_service-1     | [Order 2] Updated order with route: [17, 5, 29, 34, 42, 40, 24, 46, 19, 30]
+order_service-1     | INFO:     172.18.0.7:37452 - "POST /api/orders/2/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:37452 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:58160 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:58168 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:34718 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:34728 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:34744 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46986 - "POST /api/orders/2/delivered HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:34756 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.2:59972 - "GET /metrics HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:34760 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:38208 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:38222 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:38226 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:38232 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:38236 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:33254 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:33256 - "GET /api/orders/ HTTP/1.1" 200 OK
+postgres_order-1    | 
+postgres_order-1    | 2026-05-04 09:03:37.114 UTC [1] LOG:  starting PostgreSQL 15.17 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres_order-1    | 2026-05-04 09:03:37.114 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres_order-1    | 2026-05-04 09:03:37.114 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres_order-1    | 2026-05-04 09:03:37.115 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres_order-1    | 2026-05-04 09:03:37.117 UTC [57] LOG:  database system was shut down at 2026-05-04 09:03:37 UTC
+postgres_order-1    | 2026-05-04 09:03:37.119 UTC [1] LOG:  database system is ready to accept connections
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 503 Service Unavailable
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 500 Internal Server Error"
+web_service-1       | INFO:web_service.main:Couriers response: 500
+web_service-1       | ERROR:web_service.main:Unexpected error: Expecting value: line 1 column 1 (char 0)
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 503 Service Unavailable
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+order_service-1     | INFO:     172.18.0.2:37758 - "GET /metrics HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Couriers response: 200
+courier_service-1   | INFO:     172.18.0.6:50202 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:33262 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:33270 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:33278 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:51604 - "GET /api/orders/ HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 500 Internal Server Error"
+courier_service-1   | [assign_order] Received order_id=2, restaurant=17, customer=30, route=[17, 5, 29, 34, 42, 40, 24, 46, 19, 30]
+courier_service-1   | Всего курьеров в БД: 5
+courier_service-1   |   Курьер 2: Курьер_2, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 3: Курьер_3, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 4: Курьер_4, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 5: Курьер_5, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 1: Курьер_1, status=CourierStatus.DELIVERING, current_order_id=1
+courier_service-1   | Пытаемся назначить заказ 2 курьеру 2
+courier_service-1   | Маршрут для курьера 2: [17, 5, 29, 34, 42, 40, 24, 46, 19, 30]
+courier_service-1   | [assign_order] Creating emulator for courier 2 to run route
+courier_service-1   | Успешно назначили курьера 2 на заказ 2
+courier_service-1   | INFO:     172.18.0.6:50202 - "POST /api/couriers/assign HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 2: 200 - {"status":"assigned","courier_id":2,"route":[17,5,29,34,42,40,24,46,19,30]}
+courier_service-1   | [simulate-full] assign_data for order 2: {'status': 'assigned', 'courier_id': 2, 'route': [17, 5, 29, 34, 42, 40, 24, 46, 19, 30]}
+courier_service-1   | Создан заказ 3: ресторан=34, клиент=3, статус=200
+courier_service-1   | Маршрут A*: 34 -> 3 = None, dist=inf
+courier_service-1   | INFO:     172.18.0.8:54314 - "POST /api/couriers/simulate-full?courier_count=5&order_count=20 HTTP/1.1" 500 Internal Server Error
+courier_service-1   | ERROR:    Exception in ASGI application
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+courier_service-1   |     result = await app(  # type: ignore[func-returns-value]
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 56, in __call__
+courier_service-1   |     return await self.app(scope, receive, send)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1159, in __call__
+courier_service-1   |     await super().__call__(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 90, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+courier_service-1   |     await self.app(scope, receive, _send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+courier_service-1   |     with recv_stream, send_stream, collapse_excgroups():
+web_service-1       | INFO:web_service.main:Couriers response: 500
+web_service-1       | ERROR:web_service.main:Unexpected error: Expecting value: line 1 column 1 (char 0)
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 503 Service Unavailable
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 500 Internal Server Error"
+web_service-1       | INFO:web_service.main:Couriers response: 500
+web_service-1       | ERROR:web_service.main:Unexpected error: Expecting value: line 1 column 1 (char 0)
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 503 Service Unavailable
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+courier_service-1   |   File "/usr/local/lib/python3.11/contextlib.py", line 158, in __exit__
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 500 Internal Server Error"
+web_service-1       | INFO:web_service.main:Couriers response: 500
+courier_service-1   |     self.gen.throw(typ, value, traceback)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+courier_service-1   |     response = await self.dispatch_func(request, call_next)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/main.py", line 131, in prometheus_middleware
+courier_service-1   |     response = await call_next(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+courier_service-1   |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+courier_service-1   |     await self.app(scope, receive_or_disconnect, send_no_error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+courier_service-1   |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+web_service-1       | ERROR:web_service.main:Unexpected error: Expecting value: line 1 column 1 (char 0)
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 503 Service Unavailable
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Couriers response: 200
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 660, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 680, in app
+courier_service-1   |     await route.handle(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 276, in handle
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+courier_service-1   |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+courier_service-1   |     response = await f(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+courier_service-1   |     raw_response = await run_endpoint_function(
+courier_service-1   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+courier_service-1   |     return await dependant.call(**values)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/routes.py", line 178, in simulate_full
+courier_service-1   |     route_to_restaurant + route_restaurant_to_customer
+courier_service-1   |     ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+courier_service-1   | TypeError: can only concatenate list (not "NoneType") to list
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed766cc70>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-82' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed9f908b0>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-85' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed74c1a80>>
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:47582 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-89' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | INFO:     172.18.0.8:54334 - "GET /api/couriers/ HTTP/1.1" 500 Internal Server Error
+courier_service-1   | ERROR:    Exception in ASGI application
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+courier_service-1   |     result = await app(  # type: ignore[func-returns-value]
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 56, in __call__
+courier_service-1   |     return await self.app(scope, receive, send)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1159, in __call__
+courier_service-1   |     await super().__call__(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 90, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+courier_service-1   |     await self.app(scope, receive, _send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:47560 - "GET /api/couriers HTTP/1.1" 200 OK
+courier_service-1   |     with recv_stream, send_stream, collapse_excgroups():
+courier_service-1   |   File "/usr/local/lib/python3.11/contextlib.py", line 158, in __exit__
+courier_service-1   |     self.gen.throw(typ, value, traceback)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+courier_service-1   |     response = await self.dispatch_func(request, call_next)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/main.py", line 131, in prometheus_middleware
+courier_service-1   |     response = await call_next(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+courier_service-1   |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+courier_service-1   |     await self.app(scope, receive_or_disconnect, send_no_error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+courier_service-1   |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 660, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 680, in app
+courier_service-1   |     await route.handle(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 276, in handle
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+courier_service-1   |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+courier_service-1   |     response = await f(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+courier_service-1   |     raw_response = await run_endpoint_function(
+courier_service-1   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+courier_service-1   |     return await dependant.call(**values)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/routes.py", line 236, in list_couriers
+courier_service-1   |     couriers = await service.get_all_couriers()
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/courier_service.py", line 308, in get_all_couriers
+courier_service-1   |     result = await self.session.execute(select(Courier).execution_options(populate_existing=True))
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 449, in execute
+courier_service-1   |     result = await greenlet_spawn(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+courier_service-1   |     result = context.throw(*sys.exc_info())
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+courier_service-1   |     return self._execute_internal(
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2239, in _execute_internal
+courier_service-1   |     conn = self._connection_for_bind(bind)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2108, in _connection_for_bind
+courier_service-1   |     return trans._connection_for_bind(engine, execution_options)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "<string>", line 2, in _connection_for_bind
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+courier_service-1   |     ret_value = fn(self, *arg, **kw)
+courier_service-1   |                 ^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1187, in _connection_for_bind
+courier_service-1   |     conn = bind.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+courier_service-1   |     return self._connection_cls(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+courier_service-1   |     self._dbapi_connection = engine.raw_connection()
+courier_service-1   |                              ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+courier_service-1   |     return self.pool.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+courier_service-1   |     return _ConnectionFairy._checkout(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1371, in _checkout
+courier_service-1   |     with util.safe_reraise():
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+courier_service-1   |     raise exc_value.with_traceback(exc_tb)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1309, in _checkout
+courier_service-1   |     result = pool._dialect._do_ping_w_event(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 729, in _do_ping_w_event
+courier_service-1   |     return self.do_ping(dbapi_connection)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1160, in do_ping
+courier_service-1   |     dbapi_connection.ping()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 818, in ping
+courier_service-1   |     self._handle_exception(error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 799, in _handle_exception
+courier_service-1   |     raise error
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 816, in ping
+courier_service-1   |     _ = self.await_(self._async_ping())
+courier_service-1   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 825, in _async_ping
+courier_service-1   |     await tr.start()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/transaction.py", line 146, in start
+courier_service-1   |     await self._connection.execute(query)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 354, in execute
+courier_service-1   |     result = await self._protocol.query(query, timeout)
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 369, in query
+courier_service-1   | RuntimeError: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /usr/local/lib/python3.11/site-packages/starlette/middleware/base.py:144> cb=[TaskGroup._spawn.<locals>.task_done() at /usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py:821]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+courier_service-1   | INFO:     172.18.0.8:54340 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed763da80>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-106' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | INFO:     172.18.0.8:54346 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed763dd50>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-120' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | INFO:     172.18.0.8:54354 - "GET /api/couriers/ HTTP/1.1" 500 Internal Server Error
+courier_service-1   | ERROR:    Exception in ASGI application
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+courier_service-1   |     result = await app(  # type: ignore[func-returns-value]
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 56, in __call__
+courier_service-1   |     return await self.app(scope, receive, send)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1159, in __call__
+courier_service-1   |     await super().__call__(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 90, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+courier_service-1   |     await self.app(scope, receive, _send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+courier_service-1   |     with recv_stream, send_stream, collapse_excgroups():
+courier_service-1   |   File "/usr/local/lib/python3.11/contextlib.py", line 158, in __exit__
+courier_service-1   |     self.gen.throw(typ, value, traceback)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+courier_service-1   |     response = await self.dispatch_func(request, call_next)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/main.py", line 131, in prometheus_middleware
+courier_service-1   |     response = await call_next(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+courier_service-1   |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+courier_service-1   |     await self.app(scope, receive_or_disconnect, send_no_error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+courier_service-1   |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 660, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 680, in app
+courier_service-1   |     await route.handle(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 276, in handle
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+courier_service-1   |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+courier_service-1   |     response = await f(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+courier_service-1   |     raw_response = await run_endpoint_function(
+courier_service-1   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+courier_service-1   |     return await dependant.call(**values)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/routes.py", line 236, in list_couriers
+courier_service-1   |     couriers = await service.get_all_couriers()
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/courier_service.py", line 308, in get_all_couriers
+courier_service-1   |     result = await self.session.execute(select(Courier).execution_options(populate_existing=True))
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 449, in execute
+courier_service-1   |     result = await greenlet_spawn(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+courier_service-1   |     result = context.throw(*sys.exc_info())
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+courier_service-1   |     return self._execute_internal(
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2239, in _execute_internal
+courier_service-1   |     conn = self._connection_for_bind(bind)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2108, in _connection_for_bind
+courier_service-1   |     return trans._connection_for_bind(engine, execution_options)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "<string>", line 2, in _connection_for_bind
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+courier_service-1   |     ret_value = fn(self, *arg, **kw)
+courier_service-1   |                 ^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1187, in _connection_for_bind
+courier_service-1   |     conn = bind.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+courier_service-1   |     return self._connection_cls(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+courier_service-1   |     self._dbapi_connection = engine.raw_connection()
+courier_service-1   |                              ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+courier_service-1   |     return self.pool.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+courier_service-1   |     return _ConnectionFairy._checkout(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1371, in _checkout
+courier_service-1   |     with util.safe_reraise():
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+courier_service-1   |     raise exc_value.with_traceback(exc_tb)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1309, in _checkout
+courier_service-1   |     result = pool._dialect._do_ping_w_event(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 729, in _do_ping_w_event
+courier_service-1   |     return self.do_ping(dbapi_connection)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1160, in do_ping
+courier_service-1   |     dbapi_connection.ping()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 818, in ping
+courier_service-1   |     self._handle_exception(error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 799, in _handle_exception
+courier_service-1   |     raise error
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 816, in ping
+courier_service-1   |     _ = self.await_(self._async_ping())
+courier_service-1   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 825, in _async_ping
+courier_service-1   |     await tr.start()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/transaction.py", line 146, in start
+courier_service-1   |     await self._connection.execute(query)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 354, in execute
+courier_service-1   |     result = await self._protocol.query(query, timeout)
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 369, in query
+courier_service-1   | RuntimeError: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /usr/local/lib/python3.11/site-packages/starlette/middleware/base.py:144> cb=[TaskGroup._spawn.<locals>.task_done() at /usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py:821]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+courier_service-1   | INFO:     172.18.0.8:54368 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | INFO:     172.18.0.8:58736 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed74c34c0>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-146' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | INFO:     172.18.0.8:58752 - "GET /api/couriers/ HTTP/1.1" 500 Internal Server Error
+courier_service-1   | ERROR:    Exception in ASGI application
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+courier_service-1   |     result = await app(  # type: ignore[func-returns-value]
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 56, in __call__
+courier_service-1   |     return await self.app(scope, receive, send)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1159, in __call__
+courier_service-1   |     await super().__call__(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 90, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+courier_service-1   |     await self.app(scope, receive, _send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+courier_service-1   |     with recv_stream, send_stream, collapse_excgroups():
+courier_service-1   |   File "/usr/local/lib/python3.11/contextlib.py", line 158, in __exit__
+courier_service-1   |     self.gen.throw(typ, value, traceback)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+courier_service-1   |     response = await self.dispatch_func(request, call_next)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/main.py", line 131, in prometheus_middleware
+courier_service-1   |     response = await call_next(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+courier_service-1   |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+courier_service-1   |     await self.app(scope, receive_or_disconnect, send_no_error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+courier_service-1   |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 660, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 680, in app
+courier_service-1   |     await route.handle(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 276, in handle
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+courier_service-1   |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+courier_service-1   |     response = await f(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+courier_service-1   |     raw_response = await run_endpoint_function(
+courier_service-1   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+courier_service-1   |     return await dependant.call(**values)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/routes.py", line 236, in list_couriers
+courier_service-1   |     couriers = await service.get_all_couriers()
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/courier_service.py", line 308, in get_all_couriers
+courier_service-1   |     result = await self.session.execute(select(Courier).execution_options(populate_existing=True))
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 449, in execute
+courier_service-1   |     result = await greenlet_spawn(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+courier_service-1   |     result = context.throw(*sys.exc_info())
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+courier_service-1   |     return self._execute_internal(
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2239, in _execute_internal
+courier_service-1   |     conn = self._connection_for_bind(bind)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2108, in _connection_for_bind
+courier_service-1   |     return trans._connection_for_bind(engine, execution_options)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "<string>", line 2, in _connection_for_bind
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+courier_service-1   |     ret_value = fn(self, *arg, **kw)
+courier_service-1   |                 ^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1187, in _connection_for_bind
+courier_service-1   |     conn = bind.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+courier_service-1   |     return self._connection_cls(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+courier_service-1   |     self._dbapi_connection = engine.raw_connection()
+courier_service-1   |                              ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+courier_service-1   |     return self.pool.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+courier_service-1   |     return _ConnectionFairy._checkout(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1371, in _checkout
+courier_service-1   |     with util.safe_reraise():
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+courier_service-1   |     raise exc_value.with_traceback(exc_tb)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1309, in _checkout
+courier_service-1   |     result = pool._dialect._do_ping_w_event(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 729, in _do_ping_w_event
+courier_service-1   |     return self.do_ping(dbapi_connection)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1160, in do_ping
+courier_service-1   |     dbapi_connection.ping()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 818, in ping
+courier_service-1   |     self._handle_exception(error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 799, in _handle_exception
+courier_service-1   |     raise error
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 816, in ping
+courier_service-1   |     _ = self.await_(self._async_ping())
+courier_service-1   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 825, in _async_ping
+courier_service-1   |     await tr.start()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/transaction.py", line 146, in start
+courier_service-1   |     await self._connection.execute(query)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 354, in execute
+courier_service-1   |     result = await self._protocol.query(query, timeout)
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 369, in query
+courier_service-1   | RuntimeError: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /usr/local/lib/python3.11/site-packages/starlette/middleware/base.py:144> cb=[TaskGroup._spawn.<locals>.task_done() at /usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py:821]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed75631f0>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-163' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | INFO:     172.18.0.8:58754 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed74c1c60>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-171' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | INFO:     172.18.0.8:58762 - "GET /api/couriers/ HTTP/1.1" 500 Internal Server Error
+courier_service-1   | ERROR:    Exception in ASGI application
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+courier_service-1   |     result = await app(  # type: ignore[func-returns-value]
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 56, in __call__
+courier_service-1   |     return await self.app(scope, receive, send)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1159, in __call__
+courier_service-1   |     await super().__call__(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 90, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+courier_service-1   |     await self.app(scope, receive, _send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+courier_service-1   |     with recv_stream, send_stream, collapse_excgroups():
+courier_service-1   |   File "/usr/local/lib/python3.11/contextlib.py", line 158, in __exit__
+courier_service-1   |     self.gen.throw(typ, value, traceback)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+courier_service-1   |     response = await self.dispatch_func(request, call_next)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/main.py", line 131, in prometheus_middleware
+courier_service-1   |     response = await call_next(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+courier_service-1   |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+courier_service-1   |     await self.app(scope, receive_or_disconnect, send_no_error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+courier_service-1   |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 660, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 680, in app
+courier_service-1   |     await route.handle(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 276, in handle
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+courier_service-1   |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+courier_service-1   |     response = await f(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+courier_service-1   |     raw_response = await run_endpoint_function(
+courier_service-1   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+courier_service-1   |     return await dependant.call(**values)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/routes.py", line 236, in list_couriers
+courier_service-1   |     couriers = await service.get_all_couriers()
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/courier_service.py", line 308, in get_all_couriers
+courier_service-1   |     result = await self.session.execute(select(Courier).execution_options(populate_existing=True))
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 449, in execute
+courier_service-1   |     result = await greenlet_spawn(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+courier_service-1   |     result = context.throw(*sys.exc_info())
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+courier_service-1   |     return self._execute_internal(
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2239, in _execute_internal
+courier_service-1   |     conn = self._connection_for_bind(bind)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2108, in _connection_for_bind
+courier_service-1   |     return trans._connection_for_bind(engine, execution_options)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "<string>", line 2, in _connection_for_bind
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+courier_service-1   |     ret_value = fn(self, *arg, **kw)
+courier_service-1   |                 ^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1187, in _connection_for_bind
+courier_service-1   |     conn = bind.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+courier_service-1   |     return self._connection_cls(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+courier_service-1   |     self._dbapi_connection = engine.raw_connection()
+courier_service-1   |                              ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+courier_service-1   |     return self.pool.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+courier_service-1   |     return _ConnectionFairy._checkout(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1371, in _checkout
+courier_service-1   |     with util.safe_reraise():
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+courier_service-1   |     raise exc_value.with_traceback(exc_tb)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1309, in _checkout
+courier_service-1   |     result = pool._dialect._do_ping_w_event(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 729, in _do_ping_w_event
+courier_service-1   |     return self.do_ping(dbapi_connection)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1160, in do_ping
+courier_service-1   |     dbapi_connection.ping()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 818, in ping
+courier_service-1   |     self._handle_exception(error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 799, in _handle_exception
+courier_service-1   |     raise error
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 816, in ping
+courier_service-1   |     _ = self.await_(self._async_ping())
+courier_service-1   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 825, in _async_ping
+courier_service-1   |     await tr.start()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/transaction.py", line 146, in start
+courier_service-1   |     await self._connection.execute(query)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 354, in execute
+courier_service-1   |     result = await self._protocol.query(query, timeout)
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 369, in query
+courier_service-1   | RuntimeError: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /usr/local/lib/python3.11/site-packages/starlette/middleware/base.py:144> cb=[TaskGroup._spawn.<locals>.task_done() at /usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py:821]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed74c1990>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-189' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | INFO:     172.18.0.8:58766 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed4228040>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-197' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | INFO:     172.18.0.8:58776 - "GET /api/couriers/ HTTP/1.1" 500 Internal Server Error
+courier_service-1   | ERROR:    Exception in ASGI application
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+courier_service-1   |     result = await app(  # type: ignore[func-returns-value]
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 56, in __call__
+courier_service-1   |     return await self.app(scope, receive, send)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1159, in __call__
+courier_service-1   |     await super().__call__(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 90, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+courier_service-1   |     await self.app(scope, receive, _send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+courier_service-1   |     with recv_stream, send_stream, collapse_excgroups():
+courier_service-1   |   File "/usr/local/lib/python3.11/contextlib.py", line 158, in __exit__
+courier_service-1   |     self.gen.throw(typ, value, traceback)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+courier_service-1   |     response = await self.dispatch_func(request, call_next)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/main.py", line 131, in prometheus_middleware
+courier_service-1   |     response = await call_next(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+courier_service-1   |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+courier_service-1   |     await self.app(scope, receive_or_disconnect, send_no_error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+courier_service-1   |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 660, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 680, in app
+courier_service-1   |     await route.handle(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 276, in handle
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+courier_service-1   |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+courier_service-1   |     response = await f(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+courier_service-1   |     raw_response = await run_endpoint_function(
+courier_service-1   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+courier_service-1   |     return await dependant.call(**values)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/routes.py", line 236, in list_couriers
+courier_service-1   |     couriers = await service.get_all_couriers()
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/courier_service.py", line 308, in get_all_couriers
+courier_service-1   |     result = await self.session.execute(select(Courier).execution_options(populate_existing=True))
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 449, in execute
+courier_service-1   |     result = await greenlet_spawn(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+courier_service-1   |     result = context.throw(*sys.exc_info())
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+courier_service-1   |     return self._execute_internal(
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2239, in _execute_internal
+courier_service-1   |     conn = self._connection_for_bind(bind)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2108, in _connection_for_bind
+courier_service-1   |     return trans._connection_for_bind(engine, execution_options)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "<string>", line 2, in _connection_for_bind
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+courier_service-1   |     ret_value = fn(self, *arg, **kw)
+courier_service-1   |                 ^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1187, in _connection_for_bind
+courier_service-1   |     conn = bind.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+courier_service-1   |     return self._connection_cls(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+courier_service-1   |     self._dbapi_connection = engine.raw_connection()
+courier_service-1   |                              ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+courier_service-1   |     return self.pool.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+courier_service-1   |     return _ConnectionFairy._checkout(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1371, in _checkout
+courier_service-1   |     with util.safe_reraise():
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+courier_service-1   |     raise exc_value.with_traceback(exc_tb)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1309, in _checkout
+courier_service-1   |     result = pool._dialect._do_ping_w_event(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 729, in _do_ping_w_event
+courier_service-1   |     return self.do_ping(dbapi_connection)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1160, in do_ping
+courier_service-1   |     dbapi_connection.ping()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 818, in ping
+courier_service-1   |     self._handle_exception(error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 799, in _handle_exception
+courier_service-1   |     raise error
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 816, in ping
+courier_service-1   |     _ = self.await_(self._async_ping())
+courier_service-1   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 825, in _async_ping
+courier_service-1   |     await tr.start()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/transaction.py", line 146, in start
+courier_service-1   |     await self._connection.execute(query)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 354, in execute
+courier_service-1   |     result = await self._protocol.query(query, timeout)
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 369, in query
+courier_service-1   | RuntimeError: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /usr/local/lib/python3.11/site-packages/starlette/middleware/base.py:144> cb=[TaskGroup._spawn.<locals>.task_done() at /usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py:821]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | INFO:     172.18.0.2:43708 - "GET /metrics HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:58788 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:58800 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Exception terminating connection <AdaptedConnection <asyncpg.connection.Connection object at 0x7f7ed42294e0>>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 373, in _close_connection
+courier_service-1   |     self._dialect.do_terminate(connection)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1127, in do_terminate
+courier_service-1   |     dbapi_connection.terminate()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/connectors/asyncio.py", line 402, in terminate
+courier_service-1   |     self.await_(asyncio.shield(self._terminate_graceful_close()))  # type: ignore[attr-defined] # noqa: E501
+courier_service-1   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 912, in _terminate_graceful_close
+courier_service-1   |     await self._connection.close(timeout=2)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 1513, in close
+courier_service-1   |     await self._protocol.close(timeout)
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 618, in close
+courier_service-1   | RuntimeError: Task <Task pending name='Task-241' coro=<AsyncAdapt_asyncpg_connection._terminate_graceful_close() running at /usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py:912> cb=[shield.<locals>._inner_done_callback() at /usr/local/lib/python3.11/asyncio/tasks.py:891]> got Future <Future pending> attached to a different loop
+courier_service-1   | INFO:     172.18.0.8:58812 - "GET /api/couriers/ HTTP/1.1" 500 Internal Server Error
+courier_service-1   | ERROR:    Exception in ASGI application
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/protocols/http/httptools_impl.py", line 421, in run_asgi
+courier_service-1   |     result = await app(  # type: ignore[func-returns-value]
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/uvicorn/middleware/proxy_headers.py", line 56, in __call__
+courier_service-1   |     return await self.app(scope, receive, send)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/applications.py", line 1159, in __call__
+courier_service-1   |     await super().__call__(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/applications.py", line 90, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 186, in __call__
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+courier_service-1   |     await self.app(scope, receive, _send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 191, in __call__
+courier_service-1   |     with recv_stream, send_stream, collapse_excgroups():
+courier_service-1   |   File "/usr/local/lib/python3.11/contextlib.py", line 158, in __exit__
+courier_service-1   |     self.gen.throw(typ, value, traceback)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_utils.py", line 87, in collapse_excgroups
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 193, in __call__
+courier_service-1   |     response = await self.dispatch_func(request, call_next)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/main.py", line 131, in prometheus_middleware
+courier_service-1   |     response = await call_next(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 168, in call_next
+courier_service-1   |     raise app_exc from app_exc.__cause__ or app_exc.__context__
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/base.py", line 144, in coro
+courier_service-1   |     await self.app(scope, receive_or_disconnect, send_no_error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+courier_service-1   |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 660, in __call__
+courier_service-1   |     await self.middleware_stack(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 680, in app
+courier_service-1   |     await route.handle(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/routing.py", line 276, in handle
+courier_service-1   |     await self.app(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 134, in app
+courier_service-1   |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+courier_service-1   |     raise exc
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+courier_service-1   |     await app(scope, receive, sender)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 120, in app
+courier_service-1   |     response = await f(request)
+courier_service-1   |                ^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 674, in app
+courier_service-1   |     raw_response = await run_endpoint_function(
+courier_service-1   |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
+courier_service-1   |     return await dependant.call(**values)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/routes.py", line 236, in list_couriers
+courier_service-1   |     couriers = await service.get_all_couriers()
+courier_service-1   |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/app/courier_service/courier_service.py", line 308, in get_all_couriers
+courier_service-1   |     result = await self.session.execute(select(Courier).execution_options(populate_existing=True))
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/ext/asyncio/session.py", line 449, in execute
+courier_service-1   |     result = await greenlet_spawn(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 201, in greenlet_spawn
+courier_service-1   |     result = context.throw(*sys.exc_info())
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2351, in execute
+courier_service-1   |     return self._execute_internal(
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2239, in _execute_internal
+courier_service-1   |     conn = self._connection_for_bind(bind)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 2108, in _connection_for_bind
+courier_service-1   |     return trans._connection_for_bind(engine, execution_options)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "<string>", line 2, in _connection_for_bind
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/state_changes.py", line 137, in _go
+courier_service-1   |     ret_value = fn(self, *arg, **kw)
+courier_service-1   |                 ^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/orm/session.py", line 1187, in _connection_for_bind
+courier_service-1   |     conn = bind.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3293, in connect
+courier_service-1   |     return self._connection_cls(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 143, in __init__
+courier_service-1   |     self._dbapi_connection = engine.raw_connection()
+courier_service-1   |                              ^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/base.py", line 3317, in raw_connection
+courier_service-1   |     return self.pool.connect()
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 448, in connect
+courier_service-1   |     return _ConnectionFairy._checkout(self)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1371, in _checkout
+courier_service-1   |     with util.safe_reraise():
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/langhelpers.py", line 121, in __exit__
+courier_service-1   |     raise exc_value.with_traceback(exc_tb)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/pool/base.py", line 1309, in _checkout
+courier_service-1   |     result = pool._dialect._do_ping_w_event(
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/engine/default.py", line 729, in _do_ping_w_event
+courier_service-1   |     return self.do_ping(dbapi_connection)
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 1160, in do_ping
+courier_service-1   |     dbapi_connection.ping()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 818, in ping
+courier_service-1   |     self._handle_exception(error)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 799, in _handle_exception
+courier_service-1   |     raise error
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 816, in ping
+courier_service-1   |     _ = self.await_(self._async_ping())
+courier_service-1   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 132, in await_only
+courier_service-1   |     return current.parent.switch(awaitable)  # type: ignore[no-any-return,attr-defined] # noqa: E501
+courier_service-1   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/util/_concurrency_py3k.py", line 196, in greenlet_spawn
+courier_service-1   |     value = await result
+courier_service-1   |             ^^^^^^^^^^^^
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/sqlalchemy/dialects/postgresql/asyncpg.py", line 825, in _async_ping
+courier_service-1   |     await tr.start()
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/transaction.py", line 146, in start
+courier_service-1   |     await self._connection.execute(query)
+courier_service-1   |   File "/usr/local/lib/python3.11/site-packages/asyncpg/connection.py", line 354, in execute
+courier_service-1   |     result = await self._protocol.query(query, timeout)
+courier_service-1   |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 369, in query
+courier_service-1   | RuntimeError: Task <Task pending name='starlette.middleware.base.BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro' coro=<BaseHTTPMiddleware.__call__.<locals>.call_next.<locals>.coro() running at /usr/local/lib/python3.11/site-packages/starlette/middleware/base.py:144> cb=[TaskGroup._spawn.<locals>.task_done() at /usr/local/lib/python3.11/site-packages/anyio/_backends/_asyncio.py:821]> got Future <Future pending cb=[BaseProtocol._on_waiter_completed()]> attached to a different loop
+courier_service-1   | INFO:     172.18.0.8:58814 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Future exception was never retrieved
+courier_service-1   | future: <Future finished exception=InternalClientError('got result for unknown protocol state 3')>
+courier_service-1   | Traceback (most recent call last):
+courier_service-1   |   File "asyncpg/protocol/protocol.pyx", line 892, in asyncpg.protocol.protocol.BaseProtocol._dispatch_result
+courier_service-1   | asyncpg.exceptions._base.InternalClientError: got result for unknown protocol state 3
+courier_service-1   | INFO:     172.18.0.8:60136 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:60144 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:60146 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:60156 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:60172 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:60180 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:60196 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:60208 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:60224 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:60236 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.2:58290 - "GET /metrics HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42478 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42486 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42494 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42504 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42508 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42522 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42524 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42530 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42532 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:42536 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:36460 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:36464 - "GET /api/couriers/ HTTP/1.1" 200 OK

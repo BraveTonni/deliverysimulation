@@ -1,0 +1,18 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir uv
+
+COPY pyproject.toml ./
+
+RUN uv pip install --system fastapi uvicorn[standard] sqlalchemy[asyncio] asyncpg pydantic pydantic-settings prometheus-client redis python-dotenv httpx
+
+COPY shared/ ./shared/
+COPY courier_service/ ./courier_service/
+
+ENV PYTHONPATH=/app
+
+EXPOSE 8002
+
+CMD ["python", "-m", "uvicorn", "courier_service.main:app", "--host", "0.0.0.0", "--port", "8002"]

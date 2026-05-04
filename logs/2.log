@@ -1,0 +1,2621 @@
+postgres_order-1  | The files belonging to this database system will be owned by user "postgres".
+postgres_courier-1  | The files belonging to this database system will be owned by user "postgres".
+postgres_courier-1  | This user must also own the server process.
+postgres_courier-1  | 
+postgres_courier-1  | The database cluster will be initialized with locale "en_US.utf8".
+postgres_courier-1  | The default database encoding has accordingly been set to "UTF8".
+postgres_courier-1  | The default text search configuration will be set to "english".
+postgres_courier-1  | 
+postgres_courier-1  | Data page checksums are disabled.
+postgres_courier-1  | 
+postgres_order-1    | This user must also own the server process.
+postgres_order-1    | 
+postgres_order-1    | The database cluster will be initialized with locale "en_US.utf8".
+postgres_order-1    | The default database encoding has accordingly been set to "UTF8".
+postgres_order-1    | The default text search configuration will be set to "english".
+postgres_order-1    | 
+postgres_order-1    | Data page checksums are disabled.
+postgres_order-1    | 
+postgres_order-1    | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres_order-1    | creating subdirectories ... ok
+postgres_order-1    | selecting dynamic shared memory implementation ... posix
+order_service-1     | INFO:     Started server process [1]
+postgres_order-1    | selecting default max_connections ... 100
+order_service-1     | INFO:     Waiting for application startup.
+order_service-1     | INFO:     Application startup complete.
+order_service-1     | INFO:     Uvicorn running on http://0.0.0.0:8001 (Press CTRL+C to quit)
+order_service-1     | INFO:     172.18.0.8:45002 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:59564 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:59576 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:45016 - "GET /api/orders/ HTTP/1.1" 200 OK
+postgres_courier-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+postgres_courier-1  | creating subdirectories ... ok
+postgres_courier-1  | selecting dynamic shared memory implementation ... posix
+postgres_courier-1  | selecting default max_connections ... 100
+order_service-1     | INFO:     172.18.0.7:46706 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:59956 - "POST /api/orders/clear HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:59966 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46718 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Found 5 couriers
+order_service-1     |   Courier 1: status=idle
+order_service-1     |   Courier 2: status=idle
+postgres_courier-1  | selecting default shared_buffers ... 128MB
+postgres_courier-1  | selecting default time zone ... UTC
+postgres_courier-1  | creating configuration files ... ok
+postgres_courier-1  | running bootstrap script ... ok
+courier_service-1   | INFO:     Started server process [1]
+postgres_courier-1  | sh: locale: not found
+postgres_courier-1  | 2026-05-04 09:00:11.913 UTC [35] WARNING:  no usable system locales were found
+postgres_courier-1  | performing post-bootstrap initialization ... ok
+postgres_courier-1  | syncing data to disk ... ok
+postgres_courier-1  | 
+postgres_courier-1  | 
+postgres_order-1    | selecting default shared_buffers ... 128MB
+courier_service-1   | INFO:     Waiting for application startup.
+postgres_order-1    | selecting default time zone ... UTC
+order_service-1     |   Courier 3: status=idle
+postgres_order-1    | creating configuration files ... ok
+order_service-1     |   Courier 4: status=idle
+order_service-1     |   Courier 5: status=idle
+order_service-1     | [Order 1] Trying to assign to courier 1
+order_service-1     | [Order 1] Assign response: 200 - {"status":"assigned","courier_id":1,"order_id":1,"route":[0,0,15,29,25,36,7]}
+order_service-1     | [Order 1] Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+web_service-1       | INFO:     Started server process [1]
+order_service-1     | DETAIL:  Key (courier_id)=(1) is not present in table "couriers".
+web_service-1       | INFO:     Waiting for application startup.
+postgres_courier-1  | Success. You can now start the database server using:
+web_service-1       | INFO:     Application startup complete.
+web_service-1       | INFO:     Uvicorn running on http://0.0.0.0:5000 (Press CTRL+C to quit)
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+postgres_courier-1  | 
+postgres_courier-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres_courier-1  | 
+web_service-1       | INFO:     172.18.0.1:56460 - "GET /api/orders HTTP/1.1" 200 OK
+order_service-1     | [SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]
+order_service-1     | [parameters: (1, 'ASSIGNED', '[0, 0, 15, 29, 25, 36, 7]', datetime.datetime(2026, 5, 4, 9, 0, 30, 598679), 1)]
+order_service-1     | (Background on this error at: https://sqlalche.me/e/20/gkpj)
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/1/assign HTTP/1.1" 500 Internal Server Error
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+postgres_courier-1  | initdb: warning: enabling "trust" authentication for local connections
+postgres_courier-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+postgres_courier-1  | waiting for server to start....2026-05-04 09:00:12.197 UTC [41] LOG:  starting PostgreSQL 15.17 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres_courier-1  | 2026-05-04 09:00:12.197 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres_courier-1  | 2026-05-04 09:00:12.198 UTC [44] LOG:  database system was shut down at 2026-05-04 09:00:12 UTC
+postgres_courier-1  | 2026-05-04 09:00:12.201 UTC [41] LOG:  database system is ready to accept connections
+postgres_courier-1  |  done
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56458 - "GET /api/couriers HTTP/1.1" 200 OK
+prometheus-1        | time=2026-05-04T09:00:11.727Z level=INFO source=main.go:1678 msg="updated GOGC" old=100 new=75
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+prometheus-1        | time=2026-05-04T09:00:11.727Z level=INFO source=main.go:744 msg="Leaving GOMAXPROCS=12: CPU quota undefined" component=automaxprocs
+prometheus-1        | time=2026-05-04T09:00:11.727Z level=INFO source=memlimit.go:198 msg="GOMEMLIMIT is updated" component=automemlimit package=github.com/KimMachineGun/automemlimit/memlimit GOMEMLIMIT=14808770150 previous=9223372036854775807
+redis-1             | 1:C 04 May 2026 09:00:11.694 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see https://github.com/jemalloc/jemalloc/issues/1328. To fix this issue add 'vm.overcommit_memory = 1' to /etc/sysctl.conf and then reboot or run the command 'sysctl vm.overcommit_memory=1' for this to take effect.
+prometheus-1        | time=2026-05-04T09:00:11.727Z level=INFO source=main.go:851 msg="Starting Prometheus Server" mode=server version="(version=3.11.3, branch=HEAD, revision=eb173f5256d4022afba1e9bc3d19740a76859fae)"
+redis-1             | 1:C 04 May 2026 09:00:11.694 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1             | 1:C 04 May 2026 09:00:11.694 * Redis version=7.4.8, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1             | 1:C 04 May 2026 09:00:11.694 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis-1             | 1:M 04 May 2026 09:00:11.694 * Increased maximum number of open files to 10032 (it was originally set to 1024).
+redis-1             | 1:M 04 May 2026 09:00:11.694 * monotonic clock: POSIX clock_gettime
+redis-1             | 1:M 04 May 2026 09:00:11.695 * Running mode=standalone, port=6379.
+redis-1             | 1:M 04 May 2026 09:00:11.695 * Server initialized
+postgres_courier-1  | server started
+postgres_courier-1  | CREATE DATABASE
+postgres_courier-1  | 
+postgres_courier-1  | 
+postgres_courier-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres_courier-1  | 
+postgres_courier-1  | waiting for server to shut down....2026-05-04 09:00:12.336 UTC [41] LOG:  received fast shutdown request
+postgres_courier-1  | 2026-05-04 09:00:12.336 UTC [41] LOG:  aborting any active transactions
+postgres_courier-1  | 2026-05-04 09:00:12.338 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+postgres_courier-1  | 2026-05-04 09:00:12.338 UTC [42] LOG:  shutting down
+order_service-1     | [Order 2] Found 5 couriers
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+order_service-1     |   Courier 2: status=idle
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56460 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:56468 - "WebSocket /ws" [accepted]
+web_service-1       | INFO:     connection open
+web_service-1       | INFO:     172.18.0.1:56460 - "GET / HTTP/1.1" 200 OK
+web_service-1       | INFO:     connection closed
+redis-1             | 1:M 04 May 2026 09:00:11.695 * Ready to accept connections tcp
+redis-1             | 1:signal-handler (1777885250) Received SIGTERM scheduling shutdown...
+redis-1             | 1:M 04 May 2026 09:00:50.912 * User requested shutdown...
+redis-1             | 1:M 04 May 2026 09:00:50.912 * Saving the final RDB snapshot before exiting.
+redis-1             | 1:M 04 May 2026 09:00:50.913 * DB saved on disk
+redis-1             | 1:M 04 May 2026 09:00:50.913 # Redis is now ready to exit, bye bye...
+prometheus-1        | time=2026-05-04T09:00:11.727Z level=INFO source=main.go:856 msg="operational information" build_context="(go=go1.26.2, platform=linux/amd64, user=root@83aad33dd38e, date=20260427-14:45:32, tags=netgo,builtinassets)" host_details="(Linux 6.17.7-arch1-1 #1 SMP PREEMPT_DYNAMIC Sun, 02 Nov 2025 17:27:22 +0000 x86_64 aaef91fa0dbd (none))" fd_limits="(soft=524287, hard=524288)" vm_limits="(soft=unlimited, hard=unlimited)"
+prometheus-1        | time=2026-05-04T09:00:11.803Z level=INFO source=web.go:710 msg="Start listening for connections" component=web address=0.0.0.0:9090
+prometheus-1        | time=2026-05-04T09:00:11.803Z level=INFO source=main.go:1410 msg="Starting TSDB ..."
+prometheus-1        | time=2026-05-04T09:00:11.804Z level=INFO source=tls_config.go:354 msg="Listening on" component=web address=[::]:9090
+prometheus-1        | time=2026-05-04T09:00:11.804Z level=INFO source=tls_config.go:357 msg="TLS is disabled." component=web http2=false address=[::]:9090
+postgres_courier-1  | 2026-05-04 09:00:12.338 UTC [42] LOG:  checkpoint starting: shutdown immediate
+prometheus-1        | time=2026-05-04T09:00:11.805Z level=INFO source=head.go:698 msg="Replaying on-disk memory mappable chunks if any" component=tsdb
+postgres_courier-1  | 2026-05-04 09:00:12.355 UTC [42] LOG:  checkpoint complete: wrote 921 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.007 s, sync=0.009 s, total=0.017 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4239 kB, estimate=4239 kB
+courier_service-1   | INFO:     Application startup complete.
+postgres_courier-1  | 2026-05-04 09:00:12.359 UTC [41] LOG:  database system is shut down
+postgres_courier-1  |  done
+postgres_courier-1  | server stopped
+postgres_courier-1  | 
+postgres_courier-1  | PostgreSQL init process complete; ready for start up.
+postgres_courier-1  | 
+web_service-1       | INFO:     172.18.0.1:56460 - "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 Not Found
+web_service-1       | INFO:     172.18.0.1:56458 - "GET /static/css/style.css HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:56480 - "GET /static/js/script.js HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/graph/nodes "HTTP/1.1 200 OK"
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/graph/nodes HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+prometheus-1        | time=2026-05-04T09:00:11.805Z level=INFO source=head.go:784 msg="On-disk memory mappable chunks replay completed" component=tsdb duration=1.007µs
+postgres_courier-1  | 2026-05-04 09:00:12.451 UTC [1] LOG:  starting PostgreSQL 15.17 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres_courier-1  | 2026-05-04 09:00:12.451 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres_courier-1  | 2026-05-04 09:00:12.451 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres_courier-1  | 2026-05-04 09:00:12.452 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+courier_service-1   | INFO:     Uvicorn running on http://0.0.0.0:8002 (Press CTRL+C to quit)
+order_service-1     |   Courier 3: status=idle
+order_service-1     |   Courier 4: status=idle
+order_service-1     |   Courier 5: status=idle
+order_service-1     |   Courier 1: status=delivering
+order_service-1     | [Order 2] Trying to assign to courier 2
+order_service-1     | [Order 2] Assign response: 200 - {"status":"assigned","courier_id":2,"order_id":2,"route":[10,29,15,40,23,17,17,23,40,15,29,25,36,7,21,30]}
+order_service-1     | [Order 2] Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+order_service-1     | DETAIL:  Key (courier_id)=(2) is not present in table "couriers".
+order_service-1     | [SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]
+order_service-1     | [parameters: (2, 'ASSIGNED', '[10, 29, 15, 40, 23, 17, 17, 23, 40, 15, 29, 25, 36, 7, 21, 30]', datetime.datetime(2026, 5, 4, 9, 0, 30, 626228), 2)]
+order_service-1     | (Background on this error at: https://sqlalche.me/e/20/gkpj)
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/2/assign HTTP/1.1" 500 Internal Server Error
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Found 5 couriers
+postgres_order-1    | running bootstrap script ... ok
+prometheus-1        | time=2026-05-04T09:00:11.805Z level=INFO source=head.go:792 msg="Replaying WAL, this may take a while" component=tsdb
+postgres_order-1    | sh: locale: not found
+courier_service-1   | INFO:     172.18.0.8:49252 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:49268 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Автоназначение запущено, ORDER_SERVICE_URL=http://order_service:8001
+courier_service-1   | INFO:     172.18.0.8:49280 - "GET /api/graph/nodes HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:49286 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:49290 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:39738 - "POST /api/couriers/clear HTTP/1.1" 200 OK
+courier_service-1   | === SIMULATE-FULL: courier_count=5, order_count=20 ===
+courier_service-1   | INFO:     172.18.0.8:39750 - "GET /api/couriers/ HTTP/1.1" 200 OK
+postgres_order-1    | 2026-05-04 09:00:11.930 UTC [35] WARNING:  no usable system locales were found
+courier_service-1   | INFO:     172.18.0.8:39760 - "GET /api/couriers/ HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Couriers response: 200
+courier_service-1   | Создаём 20 заказов...
+postgres_order-1    | performing post-bootstrap initialization ... ok
+courier_service-1   | Создан заказ 1: ресторан=0, клиент=7, статус=200
+courier_service-1   | Маршрут A*: 0 -> 7 = [0, 15, 29, 25, 36, 7], dist=865.8017200981575
+courier_service-1   | INFO:     172.18.0.6:41478 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Всего курьеров в БД: 5
+courier_service-1   |   Курьер 1: Курьер_1, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 2: Курьер_2, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 3: Курьер_3, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 4: Курьер_4, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 5: Курьер_5, status=CourierStatus.IDLE, current_order_id=None
+order_service-1     |   Courier 3: status=idle
+web_service-1       | INFO:     172.18.0.1:56502 - "GET /api/orders HTTP/1.1" 200 OK
+order_service-1     |   Courier 4: status=idle
+order_service-1     |   Courier 5: status=idle
+courier_service-1   | Пытаемся назначить заказ 1 курьеру 1
+prometheus-1        | time=2026-05-04T09:00:11.806Z level=INFO source=head.go:865 msg="WAL segment loaded" component=tsdb segment=0 maxSegment=0 duration=231.032µs
+courier_service-1   | Маршрут для курьера 1: [0, 0, 15, 29, 25, 36, 7]
+courier_service-1   | Успешно назначили курьера 1 на заказ 1
+courier_service-1   | INFO:     172.18.0.6:41478 - "POST /api/couriers/assign HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 1: 500 - {"detail":"Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table \"orders\" violates foreign key constraint \"orders_courier_id_fkey\"\nDETAIL:  Key (courier_id)=(1) is not present in table \"couriers\".\n[SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]\n[parameters: (1, 'ASSIGNED', '[0, 0, 15, 29, 25, 36, 7]', datetime.datetime(2026, 5, 4, 9, 0, 30, 598679), 1)]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"}
+courier_service-1   | Ошибка назначения заказа 1: 500
+courier_service-1   | Создан заказ 2: ресторан=17, клиент=30, статус=200
+courier_service-1   | Маршрут A*: 17 -> 30 = [17, 23, 40, 15, 29, 25, 36, 7, 21, 30], dist=1460.0224721176867
+courier_service-1   | INFO:     172.18.0.6:41494 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Всего курьеров в БД: 5
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+courier_service-1   |   Курьер 2: Курьер_2, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 3: Курьер_3, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 4: Курьер_4, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 5: Курьер_5, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 1: Курьер_1, status=CourierStatus.DELIVERING, current_order_id=1
+courier_service-1   | Пытаемся назначить заказ 2 курьеру 2
+courier_service-1   | Маршрут для курьера 2: [10, 29, 15, 40, 23, 17, 17, 23, 40, 15, 29, 25, 36, 7, 21, 30]
+courier_service-1   | Успешно назначили курьера 2 на заказ 2
+courier_service-1   | INFO:     172.18.0.6:41494 - "POST /api/couriers/assign HTTP/1.1" 200 OK
+order_service-1     |   Courier 1: status=delivering
+prometheus-1        | time=2026-05-04T09:00:11.806Z level=INFO source=head.go:902 msg="WAL replay completed" component=tsdb checkpoint_replay_duration=15.981µs wal_replay_duration=247.338µs wbl_replay_duration=124ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=1.007µs total_replay_duration=284.128µs
+courier_service-1   | Назначение заказа 2: 500 - {"detail":"Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table \"orders\" violates foreign key constraint \"orders_courier_id_fkey\"\nDETAIL:  Key (courier_id)=(2) is not present in table \"couriers\".\n[SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]\n[parameters: (2, 'ASSIGNED', '[10, 29, 15, 40, 23, 17, 17, 23, 40, 15, 29, 25, 36, 7, 21, 30]', datetime.datetime(2026, 5, 4, 9, 0, 30, 626228), 2)]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"}
+prometheus-1        | time=2026-05-04T09:00:11.806Z level=INFO source=main.go:1431 msg="filesystem information" fs_type=EXT4_SUPER_MAGIC
+prometheus-1        | time=2026-05-04T09:00:11.806Z level=INFO source=main.go:1434 msg="TSDB started"
+prometheus-1        | time=2026-05-04T09:00:11.807Z level=INFO source=main.go:1632 msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+prometheus-1        | time=2026-05-04T09:00:11.807Z level=INFO source=main.go:1048 msg="TSDB retention updated" duration=15d size=0B percentage=0
+prometheus-1        | time=2026-05-04T09:00:11.807Z level=INFO source=main.go:1671 msg="Completed loading of configuration file" db_storage=19.215µs remote_storage=1.346µs web_handler=315ns query_engine=676ns scrape=112.624µs scrape_sd=19.569µs notify=802ns notify_sd=524ns rules=1.668µs tracing=2.903µs filename=/etc/prometheus/prometheus.yml totalDuration=289.695µs
+prometheus-1        | time=2026-05-04T09:00:11.807Z level=INFO source=main.go:1395 msg="Server is ready to receive web requests."
+prometheus-1        | time=2026-05-04T09:00:11.807Z level=INFO source=manager.go:209 msg="Starting rule manager..." component="rule manager"
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=WARN source=main.go:1191 msg="Received an OS signal, exiting gracefully..." signal=terminated
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1216 msg="Stopping scrape discovery manager..."
+order_service-1     |   Courier 2: status=delivering
+courier_service-1   | Ошибка назначения заказа 2: 500
+courier_service-1   | Создан заказ 3: ресторан=34, клиент=3, статус=200
+courier_service-1   | Маршрут A*: 34 -> 3 = [34, 5, 3], dist=322.36757923774394
+courier_service-1   | INFO:     172.18.0.6:41496 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Всего курьеров в БД: 5
+courier_service-1   |   Курьер 3: Курьер_3, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 4: Курьер_4, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 5: Курьер_5, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 1: Курьер_1, status=CourierStatus.DELIVERING, current_order_id=1
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+courier_service-1   |   Курьер 2: Курьер_2, status=CourierStatus.DELIVERING, current_order_id=2
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+courier_service-1   | Пытаемся назначить заказ 3 курьеру 3
+postgres_order-1    | syncing data to disk ... ok
+courier_service-1   | Маршрут для курьера 3: [20, 28, 24, 6, 36, 7, 34, 34, 5, 3]
+order_service-1     | [Order 3] Trying to assign to courier 3
+courier_service-1   | Успешно назначили курьера 3 на заказ 3
+order_service-1     | [Order 3] Assign response: 200 - {"status":"assigned","courier_id":3,"order_id":3,"route":[20,28,24,6,36,7,34,34,5,3]}
+courier_service-1   | INFO:     172.18.0.6:41496 - "POST /api/couriers/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+postgres_courier-1  | 2026-05-04 09:00:12.453 UTC [57] LOG:  database system was shut down at 2026-05-04 09:00:12 UTC
+order_service-1     | DETAIL:  Key (courier_id)=(3) is not present in table "couriers".
+postgres_courier-1  | 2026-05-04 09:00:12.456 UTC [1] LOG:  database system is ready to accept connections
+order_service-1     | [SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]
+postgres_courier-1  | 2026-05-04 09:00:50.575 UTC [1] LOG:  received fast shutdown request
+order_service-1     | [parameters: (3, 'ASSIGNED', '[20, 28, 24, 6, 36, 7, 34, 34, 5, 3]', datetime.datetime(2026, 5, 4, 9, 0, 30, 648546), 3)]
+postgres_courier-1  | 2026-05-04 09:00:50.575 UTC [1] LOG:  aborting any active transactions
+order_service-1     | (Background on this error at: https://sqlalche.me/e/20/gkpj)
+web_service-1       | INFO:web_service.main:Couriers response: 200
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/3/assign HTTP/1.1" 500 Internal Server Error
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:34538 - "WebSocket /ws" [accepted]
+order_service-1     | [Order 4] Found 5 couriers
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1230 msg="Stopping notify discovery manager..."
+order_service-1     |   Courier 4: status=idle
+postgres_courier-1  | 2026-05-04 09:00:50.577 UTC [1] LOG:  background worker "logical replication launcher" (PID 60) exited with exit code 1
+order_service-1     |   Courier 5: status=idle
+web_service-1       | INFO:     connection open
+order_service-1     |   Courier 1: status=delivering
+courier_service-1   | Назначение заказа 3: 500 - {"detail":"Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table \"orders\" violates foreign key constraint \"orders_courier_id_fkey\"\nDETAIL:  Key (courier_id)=(3) is not present in table \"couriers\".\n[SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]\n[parameters: (3, 'ASSIGNED', '[20, 28, 24, 6, 36, 7, 34, 34, 5, 3]', datetime.datetime(2026, 5, 4, 9, 0, 30, 648546), 3)]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"}
+courier_service-1   | Ошибка назначения заказа 3: 500
+courier_service-1   | Создан заказ 4: ресторан=1, клиент=26, статус=200
+courier_service-1   | Маршрут A*: 1 -> 26 = None, dist=inf
+courier_service-1   | INFO:     172.18.0.6:41508 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Всего курьеров в БД: 5
+courier_service-1   |   Курьер 4: Курьер_4, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 5: Курьер_5, status=CourierStatus.IDLE, current_order_id=None
+postgres_courier-1  | 2026-05-04 09:00:50.577 UTC [55] LOG:  shutting down
+postgres_courier-1  | 2026-05-04 09:00:50.577 UTC [55] LOG:  checkpoint starting: shutdown immediate
+postgres_courier-1  | 2026-05-04 09:00:50.581 UTC [55] LOG:  checkpoint complete: wrote 80 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.002 s, total=0.004 s; sync files=60, longest=0.001 s, average=0.001 s; distance=235 kB, estimate=235 kB
+postgres_courier-1  | 2026-05-04 09:00:50.584 UTC [1] LOG:  database system is shut down
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     | [Order 4] Trying to assign to courier 4
+order_service-1     | [Order 4] Assign response: 200 - {"status":"assigned","courier_id":4,"order_id":4,"route":[30,1]}
+order_service-1     | [Order 4] Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+order_service-1     | DETAIL:  Key (courier_id)=(4) is not present in table "couriers".
+order_service-1     | [SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]
+order_service-1     | [parameters: (4, 'ASSIGNED', '[30, 1]', datetime.datetime(2026, 5, 4, 9, 0, 30, 674052), 4)]
+postgres_order-1    | 
+courier_service-1   |   Курьер 1: Курьер_1, status=CourierStatus.DELIVERING, current_order_id=1
+postgres_order-1    | initdb: warning: enabling "trust" authentication for local connections
+postgres_order-1    | 
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1245 msg="Stopping rule manager manager..."
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=manager.go:223 msg="Stopping rule manager..." component="rule manager"
+postgres_order-1    | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=manager.go:239 msg="Rule manager stopped" component="rule manager"
+web_service-1       | INFO:     172.18.0.1:34544 - "WebSocket /api/orders/ws/web_client" 403
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1269 msg="Stopping scrape manager..."
+web_service-1       | INFO:     connection rejected (403 Forbidden)
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1212 msg="Scrape discovery manager stopped"
+courier_service-1   |   Курьер 2: Курьер_2, status=CourierStatus.DELIVERING, current_order_id=2
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1226 msg="Notify discovery manager stopped"
+courier_service-1   |   Курьер 3: Курьер_3, status=CourierStatus.DELIVERING, current_order_id=3
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1284 msg="Stopping tracing manager..."
+courier_service-1   | Пытаемся назначить заказ 4 курьеру 4
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1369 msg="Stopping reloaders..."
+courier_service-1   | Маршрут для курьера 4: [30, 1]
+courier_service-1   | Успешно назначили курьера 4 на заказ 4
+courier_service-1   | INFO:     172.18.0.6:41508 - "POST /api/couriers/assign HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 4: 500 - {"detail":"Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table \"orders\" violates foreign key constraint \"orders_courier_id_fkey\"\nDETAIL:  Key (courier_id)=(4) is not present in table \"couriers\".\n[SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]\n[parameters: (4, 'ASSIGNED', '[30, 1]', datetime.datetime(2026, 5, 4, 9, 0, 30, 674052), 4)]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"}
+courier_service-1   | Ошибка назначения заказа 4: 500
+courier_service-1   | Создан заказ 5: ресторан=18, клиент=49, статус=200
+courier_service-1   | Маршрут A*: 18 -> 49 = [18, 43, 38, 49], dist=318.4483894776499
+courier_service-1   | INFO:     172.18.0.6:41518 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Всего курьеров в БД: 5
+courier_service-1   |   Курьер 5: Курьер_5, status=CourierStatus.IDLE, current_order_id=None
+courier_service-1   |   Курьер 1: Курьер_1, status=CourierStatus.DELIVERING, current_order_id=1
+courier_service-1   |   Курьер 2: Курьер_2, status=CourierStatus.DELIVERING, current_order_id=2
+courier_service-1   |   Курьер 3: Курьер_3, status=CourierStatus.DELIVERING, current_order_id=3
+courier_service-1   |   Курьер 4: Курьер_4, status=CourierStatus.DELIVERING, current_order_id=4
+postgres_order-1    | Success. You can now start the database server using:
+order_service-1     | (Background on this error at: https://sqlalche.me/e/20/gkpj)
+postgres_order-1    | 
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/4/assign HTTP/1.1" 500 Internal Server Error
+postgres_order-1    |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+postgres_order-1    | 
+postgres_order-1    | waiting for server to start....2026-05-04 09:00:12.200 UTC [41] LOG:  starting PostgreSQL 15.17 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres_order-1    | 2026-05-04 09:00:12.201 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres_order-1    | 2026-05-04 09:00:12.203 UTC [44] LOG:  database system was shut down at 2026-05-04 09:00:12 UTC
+postgres_order-1    | 2026-05-04 09:00:12.205 UTC [41] LOG:  database system is ready to accept connections
+postgres_order-1    |  done
+postgres_order-1    | server started
+postgres_order-1    | CREATE DATABASE
+postgres_order-1    | 
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1241 msg="Rule manager stopped"
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1458 msg="Stopping storage..."
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1261 msg="Scrape manager stopped"
+postgres_order-1    | 
+postgres_order-1    | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+postgres_order-1    | 
+postgres_order-1    | waiting for server to shut down....2026-05-04 09:00:12.335 UTC [41] LOG:  received fast shutdown request
+postgres_order-1    | 2026-05-04 09:00:12.336 UTC [41] LOG:  aborting any active transactions
+postgres_order-1    | 2026-05-04 09:00:12.337 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+order_service-1     | [Order 5] Found 5 couriers
+order_service-1     |   Courier 5: status=idle
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     | [Order 5] Trying to assign to courier 5
+order_service-1     | [Order 5] Assign response: 200 - {"status":"assigned","courier_id":5,"order_id":5,"route":[40,44,18,18,43,38,49]}
+order_service-1     | [Order 5] Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+order_service-1     | DETAIL:  Key (courier_id)=(5) is not present in table "couriers".
+order_service-1     | [SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]
+order_service-1     | [parameters: (5, 'ASSIGNED', '[40, 44, 18, 18, 43, 38, 49]', datetime.datetime(2026, 5, 4, 9, 0, 30, 704250), 5)]
+order_service-1     | (Background on this error at: https://sqlalche.me/e/20/gkpj)
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/5/assign HTTP/1.1" 500 Internal Server Error
+courier_service-1   | Пытаемся назначить заказ 5 курьеру 5
+courier_service-1   | Маршрут для курьера 5: [40, 44, 18, 18, 43, 38, 49]
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 6] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 6] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/6/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 7] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1280 msg="Tracing manager stopped"
+order_service-1     |   Courier 5: status=delivering
+prometheus-1        | time=2026-05-04T09:00:49.864Z level=INFO source=main.go:1361 msg="Reloaders stopped"
+order_service-1     | [Order 7] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/7/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 8] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 8] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/8/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+web_service-1       | INFO:     connection closed
+web_service-1       | INFO:web_service.main:Full simulation: 5 couriers, 20 orders
+order_service-1     | [Order 9] Found 5 couriers
+courier_service-1   | Успешно назначили курьера 5 на заказ 5
+postgres_order-1    | 2026-05-04 09:00:12.337 UTC [42] LOG:  shutting down
+courier_service-1   | INFO:     172.18.0.6:41518 - "POST /api/couriers/assign HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 5: 500 - {"detail":"Assignment error: (sqlalchemy.dialects.postgresql.asyncpg.IntegrityError) <class 'asyncpg.exceptions.ForeignKeyViolationError'>: insert or update on table \"orders\" violates foreign key constraint \"orders_courier_id_fkey\"\nDETAIL:  Key (courier_id)=(5) is not present in table \"couriers\".\n[SQL: UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER]\n[parameters: (5, 'ASSIGNED', '[40, 44, 18, 18, 43, 38, 49]', datetime.datetime(2026, 5, 4, 9, 0, 30, 704250), 5)]\n(Background on this error at: https://sqlalche.me/e/20/gkpj)"}
+courier_service-1   | Ошибка назначения заказа 5: 500
+courier_service-1   | Создан заказ 6: ресторан=35, клиент=22, статус=200
+courier_service-1   | Маршрут A*: 35 -> 22 = [35, 36, 22], dist=269.30539723055074
+courier_service-1   | INFO:     172.18.0.6:41534 - "GET /api/couriers/ HTTP/1.1" 200 OK
+postgres_order-1    | 2026-05-04 09:00:12.337 UTC [42] LOG:  checkpoint starting: shutdown immediate
+courier_service-1   | Назначение заказа 6: 200 - {"status":"no_couriers_available"}
+postgres_order-1    | 2026-05-04 09:00:12.355 UTC [42] LOG:  checkpoint complete: wrote 921 buffers (5.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.008 s, sync=0.009 s, total=0.018 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4239 kB, estimate=4239 kB
+web_service-1       | INFO:httpx:HTTP Request: POST http://order_service:8001/api/orders/clear "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: POST http://courier_service:8002/api/couriers/clear "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+postgres_order-1    | 2026-05-04 09:00:12.359 UTC [41] LOG:  database system is shut down
+web_service-1       | INFO:web_service.main:Orders response: 200
+postgres_order-1    |  done
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56502 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+postgres_order-1    | server stopped
+courier_service-1   | Не удалось назначить курьера на заказ 6: {'status': 'no_couriers_available'}
+postgres_order-1    | 
+courier_service-1   | Создан заказ 7: ресторан=2, клиент=45, статус=200
+prometheus-1        | time=2026-05-04T09:00:49.865Z level=INFO source=main.go:1536 msg="Stopping web handler..."
+courier_service-1   | Маршрут A*: 2 -> 45 = [2, 39, 45], dist=265.07179103415825
+courier_service-1   | INFO:     172.18.0.6:41536 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 7: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 7: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 8: ресторан=19, клиент=18, статус=200
+courier_service-1   | Маршрут A*: 19 -> 18 = [19, 3, 36, 25, 29, 43, 18], dist=843.889686343955
+courier_service-1   | INFO:     172.18.0.6:41548 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 8: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 8: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 9: ресторан=36, клиент=41, статус=200
+courier_service-1   | Маршрут A*: 36 -> 41 = [36, 25, 29, 43, 13, 37, 41], dist=1013.8218918892692
+courier_service-1   | INFO:     172.18.0.6:41554 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 9: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 9: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 10: ресторан=3, клиент=14, статус=200
+courier_service-1   | Маршрут A*: 3 -> 14 = [3, 36, 25, 29, 43, 13, 37, 14], dist=1133.7182459315768
+courier_service-1   | INFO:     172.18.0.6:41556 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 10: 200 - {"status":"no_couriers_available"}
+order_service-1     |   Courier 1: status=delivering
+prometheus-1        | time=2026-05-04T09:00:49.865Z level=INFO source=main.go:1559 msg="Stopping notifier manager..."
+order_service-1     |   Courier 2: status=delivering
+prometheus-1        | time=2026-05-04T09:00:49.865Z level=INFO source=manager.go:321 msg="Stopping notification manager..." component=notifier
+prometheus-1        | time=2026-05-04T09:00:49.865Z level=INFO source=main.go:1454 msg="TSDB stopped"
+prometheus-1        | time=2026-05-04T09:00:49.865Z level=INFO source=main.go:1555 msg="Notifier manager stopped"
+prometheus-1        | time=2026-05-04T09:00:49.865Z level=INFO source=main.go:1532 msg="Web handler stopped"
+prometheus-1        | time=2026-05-04T09:00:49.865Z level=INFO source=main.go:1570 msg="See you next time!"
+courier_service-1   | Не удалось назначить курьера на заказ 10: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 11: ресторан=20, клиент=37, статус=200
+courier_service-1   | Маршрут A*: 20 -> 37 = [20, 49, 38, 43, 13, 37], dist=732.2905871740115
+courier_service-1   | INFO:     172.18.0.6:41570 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 11: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 11: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 12: ресторан=37, клиент=10, статус=200
+courier_service-1   | Маршрут A*: 37 -> 10 = [37, 13, 43, 38, 10], dist=643.6501362678425
+courier_service-1   | INFO:     172.18.0.6:41574 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 12: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 12: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 13: ресторан=4, клиент=33, статус=200
+courier_service-1   | Маршрут A*: 4 -> 33 = [4, 41, 37, 13, 43, 29, 25, 36, 7, 34, 33], dist=1545.1536167607344
+courier_service-1   | INFO:     172.18.0.6:41590 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 13: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 13: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 14: ресторан=21, клиент=6, статус=200
+courier_service-1   | Маршрут A*: 21 -> 6 = [21, 7, 36, 6], dist=432.42103142499974
+courier_service-1   | INFO:     172.18.0.6:41600 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 14: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 14: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 15: ресторан=38, клиент=29, статус=200
+courier_service-1   | Маршрут A*: 38 -> 29 = [38, 29], dist=59.04593331969959
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+courier_service-1   | INFO:     172.18.0.6:41612 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 15: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 15: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 16: ресторан=5, клиент=2, статус=200
+courier_service-1   | Маршрут A*: 5 -> 2 = None, dist=inf
+courier_service-1   | INFO:     172.18.0.6:41620 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 16: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 16: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 17: ресторан=22, клиент=25, статус=200
+courier_service-1   | Маршрут A*: 22 -> 25 = [22, 25], dist=55.60346746659542
+courier_service-1   | INFO:     172.18.0.6:41636 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 17: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 17: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 18: ресторан=39, клиент=48, статус=200
+courier_service-1   | Маршрут A*: 39 -> 48 = None, dist=inf
+courier_service-1   | INFO:     172.18.0.6:41648 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 18: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 18: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 19: ресторан=6, клиент=21, статус=200
+courier_service-1   | Маршрут A*: 6 -> 21 = [6, 36, 7, 21], dist=432.42103142499974
+postgres_order-1    | PostgreSQL init process complete; ready for start up.
+web_service-1       | INFO:httpx:HTTP Request: POST http://courier_service:8002/api/couriers/simulate-full?courier_count=5&order_count=20 "HTTP/1.1 200 OK"
+postgres_order-1    | 
+courier_service-1   | INFO:     172.18.0.6:41656 - "GET /api/couriers/ HTTP/1.1" 200 OK
+postgres_order-1    | 2026-05-04 09:00:12.453 UTC [1] LOG:  starting PostgreSQL 15.17 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres_order-1    | 2026-05-04 09:00:12.453 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres_order-1    | 2026-05-04 09:00:12.453 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres_order-1    | 2026-05-04 09:00:12.453 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+courier_service-1   | Назначение заказа 19: 200 - {"status":"no_couriers_available"}
+postgres_order-1    | 2026-05-04 09:00:12.455 UTC [57] LOG:  database system was shut down at 2026-05-04 09:00:12 UTC
+courier_service-1   | Не удалось назначить курьера на заказ 19: {'status': 'no_couriers_available'}
+courier_service-1   | Создан заказ 20: ресторан=23, клиент=44, статус=200
+courier_service-1   | Маршрут A*: 23 -> 44 = [23, 40, 44], dist=328.1436305452303
+courier_service-1   | INFO:     172.18.0.6:41668 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Назначение заказа 20: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Не удалось назначить курьера на заказ 20: {'status': 'no_couriers_available'}
+courier_service-1   | Создано курьеров: 5, заказов: 0
+courier_service-1   | INFO:     172.18.0.8:39738 - "POST /api/couriers/simulate-full?courier_count=5&order_count=20 HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:39762 - "GET /api/couriers/ HTTP/1.1" 200 OK
+postgres_order-1    | 2026-05-04 09:00:12.457 UTC [1] LOG:  database system is ready to accept connections
+postgres_order-1    | 2026-05-04 09:00:30.600 UTC [68] ERROR:  insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+postgres_order-1    | 2026-05-04 09:00:30.600 UTC [68] DETAIL:  Key (courier_id)=(1) is not present in table "couriers".
+postgres_order-1    | 2026-05-04 09:00:30.600 UTC [68] STATEMENT:  UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER
+postgres_order-1    | 2026-05-04 09:00:30.626 UTC [68] ERROR:  insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+courier_service-1   | INFO:     172.18.0.8:39766 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Найдено 20 заказов без курьеров
+courier_service-1   | Маршрут для заказа 20: 23 -> 44 = [23, 44]
+courier_service-1   | INFO:     172.18.0.6:41678 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 20: 200 - {"status":"no_couriers_available"}
+postgres_order-1    | 2026-05-04 09:00:30.626 UTC [68] DETAIL:  Key (courier_id)=(2) is not present in table "couriers".
+postgres_order-1    | 2026-05-04 09:00:30.626 UTC [68] STATEMENT:  UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER
+postgres_order-1    | 2026-05-04 09:00:30.648 UTC [68] ERROR:  insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+postgres_order-1    | 2026-05-04 09:00:30.648 UTC [68] DETAIL:  Key (courier_id)=(3) is not present in table "couriers".
+postgres_order-1    | 2026-05-04 09:00:30.648 UTC [68] STATEMENT:  UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER
+postgres_order-1    | 2026-05-04 09:00:30.674 UTC [68] ERROR:  insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+postgres_order-1    | 2026-05-04 09:00:30.674 UTC [68] DETAIL:  Key (courier_id)=(4) is not present in table "couriers".
+postgres_order-1    | 2026-05-04 09:00:30.674 UTC [68] STATEMENT:  UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER
+postgres_order-1    | 2026-05-04 09:00:30.704 UTC [68] ERROR:  insert or update on table "orders" violates foreign key constraint "orders_courier_id_fkey"
+postgres_order-1    | 2026-05-04 09:00:30.704 UTC [68] DETAIL:  Key (courier_id)=(5) is not present in table "couriers".
+courier_service-1   | Маршрут для заказа 19: 6 -> 21 = [6, 21]
+courier_service-1   | INFO:     172.18.0.6:41694 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 19: 200 - {"status":"no_couriers_available"}
+postgres_order-1    | 2026-05-04 09:00:30.704 UTC [68] STATEMENT:  UPDATE orders SET courier_id=$1::INTEGER, status=$2::orderstatus, route=$3::VARCHAR, updated_at=$4::TIMESTAMP WITHOUT TIME ZONE WHERE orders.id = $5::INTEGER
+postgres_order-1    | 2026-05-04 09:00:50.873 UTC [1] LOG:  received fast shutdown request
+postgres_order-1    | 2026-05-04 09:00:50.874 UTC [1] LOG:  aborting any active transactions
+postgres_order-1    | 2026-05-04 09:00:50.875 UTC [1] LOG:  background worker "logical replication launcher" (PID 60) exited with exit code 1
+postgres_order-1    | 2026-05-04 09:00:50.876 UTC [55] LOG:  shutting down
+postgres_order-1    | 2026-05-04 09:00:50.876 UTC [55] LOG:  checkpoint starting: shutdown immediate
+order_service-1     |   Courier 5: status=delivering
+postgres_order-1    | 2026-05-04 09:00:50.880 UTC [55] LOG:  checkpoint complete: wrote 83 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.005 s; sync files=60, longest=0.001 s, average=0.001 s; distance=244 kB, estimate=244 kB
+postgres_order-1    | 2026-05-04 09:00:50.882 UTC [1] LOG:  database system is shut down
+web_service-1       | INFO:web_service.main:Simulate-full response: 200
+courier_service-1   | Маршрут для заказа 18: 39 -> 48 = [39, 48]
+order_service-1     | [Order 9] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/9/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 10] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+courier_service-1   | INFO:     172.18.0.6:41710 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 10] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/10/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 11] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+web_service-1       | INFO:     172.18.0.1:56492 - "POST /api/simulate-full HTTP/1.1" 200 OK
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 11] No idle couriers available
+courier_service-1   | Ответ assign для заказа 18: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 17: 22 -> 25 = [22, 25]
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/11/assign HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.6:41724 - "GET /api/couriers/ HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /%E2%9C%93 HTTP/1.1" 404 Not Found
+courier_service-1   | Ответ assign для заказа 17: 200 - {"status":"no_couriers_available"}
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+courier_service-1   | Маршрут для заказа 16: 5 -> 2 = [5, 2]
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+courier_service-1   | INFO:     172.18.0.6:41728 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 16: 200 - {"status":"no_couriers_available"}
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+courier_service-1   | Маршрут для заказа 15: 38 -> 29 = [38, 29]
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+courier_service-1   | INFO:     172.18.0.6:41740 - "GET /api/couriers/ HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Couriers response: 200
+courier_service-1   | Ответ assign для заказа 15: 200 - {"status":"no_couriers_available"}
+web_service-1       | INFO:web_service.main:Orders response: 200
+courier_service-1   | Маршрут для заказа 14: 21 -> 6 = [21, 6]
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.6:41744 - "GET /api/couriers/ HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/orders HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 14: 200 - {"status":"no_couriers_available"}
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+courier_service-1   | Маршрут для заказа 13: 4 -> 33 = [4, 33]
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+courier_service-1   | INFO:     172.18.0.6:41750 - "GET /api/couriers/ HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+courier_service-1   | Ответ assign для заказа 13: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 12: 37 -> 10 = [37, 10]
+courier_service-1   | INFO:     172.18.0.6:41756 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 12: 200 - {"status":"no_couriers_available"}
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+order_service-1     | [Order 12] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 12] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/12/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 13] Found 5 couriers
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+courier_service-1   | Маршрут для заказа 11: 20 -> 37 = [20, 37]
+courier_service-1   | INFO:     172.18.0.6:41772 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 11: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 10: 3 -> 14 = [3, 14]
+courier_service-1   | INFO:     172.18.0.6:41782 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 10: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 9: 36 -> 41 = [36, 41]
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+order_service-1     |   Courier 4: status=delivering
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+courier_service-1   | INFO:     172.18.0.6:41790 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 9: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 8: 19 -> 18 = [19, 18]
+courier_service-1   | INFO:     172.18.0.6:41794 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 8: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 7: 2 -> 45 = [2, 45]
+courier_service-1   | INFO:     172.18.0.6:41798 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 7: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 6: 35 -> 22 = [35, 22]
+courier_service-1   | INFO:     172.18.0.6:41806 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 6: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 5: 18 -> 49 = [18, 49]
+courier_service-1   | INFO:     172.18.0.6:41808 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 5: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 4: 1 -> 26 = [1, 26]
+courier_service-1   | INFO:     172.18.0.6:41822 - "GET /api/couriers/ HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 13] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/13/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.5:53720 - "GET /metrics HTTP/1.1" 200 OK
+order_service-1     | [Order 14] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 14] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/14/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 15] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+order_service-1     |   Courier 4: status=delivering
+courier_service-1   | Ответ assign для заказа 4: 200 - {"status":"no_couriers_available"}
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 15] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/15/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 16] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:web_service.main:Fetching orders from http://order_service:8001/api/orders/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:httpx:HTTP Request: GET http://order_service:8001/api/orders/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:web_service.main:Orders response: 200
+web_service-1       | INFO:     172.18.0.1:56492 - "GET /api/couriers HTTP/1.1" 200 OK
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 16] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/16/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 17] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/orders HTTP/1.1" 200 OK
+web_service-1       | INFO:web_service.main:Fetching couriers from http://courier_service:8002/api/couriers/
+web_service-1       | INFO:httpx:HTTP Request: GET http://courier_service:8002/api/couriers/ "HTTP/1.1 200 OK"
+web_service-1       | INFO:web_service.main:Couriers response: 200
+web_service-1       | INFO:     172.18.0.1:34552 - "GET /api/couriers HTTP/1.1" 200 OK
+web_service-1       | INFO:     Shutting down
+web_service-1       | INFO:     connection closed
+web_service-1       | INFO:     Waiting for application shutdown.
+web_service-1       | INFO:     Application shutdown complete.
+web_service-1       | INFO:     Finished server process [1]
+order_service-1     | [Order 17] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/17/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 18] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 18] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/18/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 19] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 19] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/19/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 20] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 20] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46730 - "POST /api/orders/20/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:59974 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46746 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 20] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 20] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/20/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 19] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+courier_service-1   | Маршрут для заказа 3: 34 -> 3 = [34, 3]
+courier_service-1   | INFO:     172.18.0.6:41830 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 3: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 2: 17 -> 30 = [17, 30]
+courier_service-1   | INFO:     172.18.0.6:41832 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 2: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 1: 0 -> 7 = [0, 7]
+courier_service-1   | INFO:     172.18.0.6:41838 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 1: 200 - {"status":"no_couriers_available"}
+courier_service-1   | INFO:     172.18.0.8:39772 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:39782 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.5:35540 - "GET /metrics HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:39784 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:39786 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Найдено 20 заказов без курьеров
+courier_service-1   | Маршрут для заказа 20: 23 -> 44 = [23, 44]
+courier_service-1   | INFO:     172.18.0.6:41848 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 20: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 19: 6 -> 21 = [6, 21]
+courier_service-1   | INFO:     172.18.0.6:41858 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 19: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 18: 39 -> 48 = [39, 48]
+courier_service-1   | INFO:     172.18.0.6:41868 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 18: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 17: 22 -> 25 = [22, 25]
+courier_service-1   | INFO:     172.18.0.6:41884 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 17: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 16: 5 -> 2 = [5, 2]
+courier_service-1   | INFO:     172.18.0.6:41888 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 16: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 15: 38 -> 29 = [38, 29]
+order_service-1     | [Order 19] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/19/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 18] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 18] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/18/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 17] Found 5 couriers
+courier_service-1   | INFO:     172.18.0.6:41896 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 15: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 14: 21 -> 6 = [21, 6]
+courier_service-1   | INFO:     172.18.0.6:41898 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 14: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 13: 4 -> 33 = [4, 33]
+courier_service-1   | INFO:     172.18.0.6:41900 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 13: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 12: 37 -> 10 = [37, 10]
+courier_service-1   | INFO:     172.18.0.6:41902 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 12: 200 - {"status":"no_couriers_available"}
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 17] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/17/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 16] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 16] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/16/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 15] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 15] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/15/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 14] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 14] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/14/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 13] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 13] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/13/assign HTTP/1.1" 200 OK
+courier_service-1   | Маршрут для заказа 11: 20 -> 37 = [20, 37]
+courier_service-1   | INFO:     172.18.0.6:41910 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 11: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 10: 3 -> 14 = [3, 14]
+courier_service-1   | INFO:     172.18.0.6:41912 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 10: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 9: 36 -> 41 = [36, 41]
+courier_service-1   | INFO:     172.18.0.6:41916 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 9: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 8: 19 -> 18 = [19, 18]
+courier_service-1   | INFO:     172.18.0.6:41928 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 8: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 7: 2 -> 45 = [2, 45]
+courier_service-1   | INFO:     172.18.0.6:41940 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 7: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 6: 35 -> 22 = [35, 22]
+courier_service-1   | INFO:     172.18.0.6:41944 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 6: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 5: 18 -> 49 = [18, 49]
+order_service-1     | [Order 12] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 12] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/12/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 11] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 11] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/11/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 10] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 10] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/10/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 9] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 9] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/9/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 8] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+courier_service-1   | INFO:     172.18.0.6:41952 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 5: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 4: 1 -> 26 = [1, 26]
+courier_service-1   | INFO:     172.18.0.6:41954 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 4: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 3: 34 -> 3 = [34, 3]
+courier_service-1   | INFO:     172.18.0.6:41966 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 3: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 2: 17 -> 30 = [17, 30]
+courier_service-1   | INFO:     172.18.0.6:41972 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 2: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 1: 0 -> 7 = [0, 7]
+courier_service-1   | INFO:     172.18.0.6:41980 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 1: 200 - {"status":"no_couriers_available"}
+courier_service-1   | INFO:     172.18.0.8:39788 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:39800 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Найдено 20 заказов без курьеров
+courier_service-1   | Маршрут для заказа 20: 23 -> 44 = [23, 44]
+courier_service-1   | INFO:     172.18.0.6:41992 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 20: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 19: 6 -> 21 = [6, 21]
+courier_service-1   | INFO:     172.18.0.6:42000 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 19: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 18: 39 -> 48 = [39, 48]
+courier_service-1   | INFO:     172.18.0.6:42004 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 18: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 17: 22 -> 25 = [22, 25]
+courier_service-1   | INFO:     172.18.0.6:42006 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 17: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 16: 5 -> 2 = [5, 2]
+courier_service-1   | INFO:     172.18.0.6:42014 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 16: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 15: 38 -> 29 = [38, 29]
+courier_service-1   | INFO:     172.18.0.6:42028 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 15: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 14: 21 -> 6 = [21, 6]
+courier_service-1   | INFO:     172.18.0.6:42030 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 14: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 13: 4 -> 33 = [4, 33]
+courier_service-1   | INFO:     172.18.0.6:42042 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 13: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 12: 37 -> 10 = [37, 10]
+courier_service-1   | INFO:     172.18.0.6:42058 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     | [Order 8] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/8/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 7] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 7] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/7/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 6] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 6] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/6/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 5] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 5] No idle couriers available
+courier_service-1   | Ответ assign для заказа 12: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 11: 20 -> 37 = [20, 37]
+courier_service-1   | INFO:     172.18.0.6:42062 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 11: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 10: 3 -> 14 = [3, 14]
+courier_service-1   | INFO:     172.18.0.6:42070 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 10: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 9: 36 -> 41 = [36, 41]
+courier_service-1   | INFO:     172.18.0.6:42078 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 9: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 8: 19 -> 18 = [19, 18]
+courier_service-1   | INFO:     172.18.0.6:42082 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 8: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 7: 2 -> 45 = [2, 45]
+courier_service-1   | INFO:     172.18.0.8:39814 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.6:42090 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 7: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 6: 35 -> 22 = [35, 22]
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/5/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 4] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 4] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/4/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 3] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/3/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 2] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 2] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/2/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 1] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46746 - "POST /api/orders/1/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:59982 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:59988 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46756 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 20] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 20] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/20/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 19] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+courier_service-1   | INFO:     172.18.0.6:42100 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 6: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 5: 18 -> 49 = [18, 49]
+courier_service-1   | INFO:     172.18.0.6:42110 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 5: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 4: 1 -> 26 = [1, 26]
+courier_service-1   | INFO:     172.18.0.6:42124 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 4: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 3: 34 -> 3 = [34, 3]
+courier_service-1   | INFO:     172.18.0.6:42136 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 3: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 2: 17 -> 30 = [17, 30]
+courier_service-1   | INFO:     172.18.0.6:42142 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 2: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 1: 0 -> 7 = [0, 7]
+courier_service-1   | INFO:     172.18.0.6:42154 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 1: 200 - {"status":"no_couriers_available"}
+courier_service-1   | INFO:     172.18.0.8:39828 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:39838 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:56466 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Найдено 20 заказов без курьеров
+courier_service-1   | Маршрут для заказа 20: 23 -> 44 = [23, 44]
+courier_service-1   | INFO:     172.18.0.6:58310 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 20: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 19: 6 -> 21 = [6, 21]
+courier_service-1   | INFO:     172.18.0.6:58322 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 19: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 18: 39 -> 48 = [39, 48]
+courier_service-1   | INFO:     172.18.0.6:58338 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     |   Courier 4: status=delivering
+courier_service-1   | Ответ assign для заказа 18: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 17: 22 -> 25 = [22, 25]
+courier_service-1   | INFO:     172.18.0.6:58340 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 17: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 16: 5 -> 2 = [5, 2]
+courier_service-1   | INFO:     172.18.0.6:58356 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 16: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 15: 38 -> 29 = [38, 29]
+courier_service-1   | INFO:     172.18.0.6:58360 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 15: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 14: 21 -> 6 = [21, 6]
+courier_service-1   | INFO:     172.18.0.6:58376 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 14: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 13: 4 -> 33 = [4, 33]
+courier_service-1   | INFO:     172.18.0.6:58378 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 13: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 12: 37 -> 10 = [37, 10]
+courier_service-1   | INFO:     172.18.0.6:58392 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 12: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 11: 20 -> 37 = [20, 37]
+courier_service-1   | INFO:     172.18.0.6:58394 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 11: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 10: 3 -> 14 = [3, 14]
+courier_service-1   | INFO:     172.18.0.6:58400 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 10: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 9: 36 -> 41 = [36, 41]
+courier_service-1   | INFO:     172.18.0.6:58406 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 9: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 8: 19 -> 18 = [19, 18]
+courier_service-1   | INFO:     172.18.0.6:58418 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 8: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 7: 2 -> 45 = [2, 45]
+courier_service-1   | INFO:     172.18.0.6:58428 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 7: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 6: 35 -> 22 = [35, 22]
+courier_service-1   | INFO:     172.18.0.6:58442 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 6: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 5: 18 -> 49 = [18, 49]
+courier_service-1   | INFO:     172.18.0.6:58448 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 19] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/19/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 18] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 18] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/18/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 17] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+courier_service-1   | Ответ assign для заказа 5: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 4: 1 -> 26 = [1, 26]
+courier_service-1   | INFO:     172.18.0.6:58460 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 17] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/17/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 16] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 16] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/16/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 15] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 15] No idle couriers available
+courier_service-1   | Ответ assign для заказа 4: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 3: 34 -> 3 = [34, 3]
+courier_service-1   | INFO:     172.18.0.6:58476 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 3: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 2: 17 -> 30 = [17, 30]
+courier_service-1   | INFO:     172.18.0.6:58478 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 2: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 1: 0 -> 7 = [0, 7]
+courier_service-1   | INFO:     172.18.0.6:58490 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 1: 200 - {"status":"no_couriers_available"}
+courier_service-1   | INFO:     172.18.0.8:56478 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:56482 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Найдено 20 заказов без курьеров
+courier_service-1   | Маршрут для заказа 20: 23 -> 44 = [23, 44]
+courier_service-1   | INFO:     172.18.0.6:58500 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 20: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 19: 6 -> 21 = [6, 21]
+courier_service-1   | INFO:     172.18.0.6:58506 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 19: 200 - {"status":"no_couriers_available"}
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/15/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 14] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 14] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/14/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 13] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+courier_service-1   | Маршрут для заказа 18: 39 -> 48 = [39, 48]
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 13] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/13/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 12] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 12] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/12/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 11] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 11] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/11/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 10] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+courier_service-1   | INFO:     172.18.0.6:58510 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 18: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 17: 22 -> 25 = [22, 25]
+courier_service-1   | INFO:     172.18.0.6:58512 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 17: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 16: 5 -> 2 = [5, 2]
+courier_service-1   | INFO:     172.18.0.6:58520 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 16: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 15: 38 -> 29 = [38, 29]
+courier_service-1   | INFO:     172.18.0.6:58526 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 15: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 14: 21 -> 6 = [21, 6]
+courier_service-1   | INFO:     172.18.0.6:58530 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 14: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 13: 4 -> 33 = [4, 33]
+courier_service-1   | INFO:     172.18.0.6:58536 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 13: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 12: 37 -> 10 = [37, 10]
+courier_service-1   | INFO:     172.18.0.6:58552 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 12: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 11: 20 -> 37 = [20, 37]
+courier_service-1   | INFO:     172.18.0.6:58560 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 11: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 10: 3 -> 14 = [3, 14]
+courier_service-1   | INFO:     172.18.0.6:58564 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 10: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 9: 36 -> 41 = [36, 41]
+courier_service-1   | INFO:     172.18.0.6:58566 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 9: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 8: 19 -> 18 = [19, 18]
+courier_service-1   | INFO:     172.18.0.6:58578 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 8: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 7: 2 -> 45 = [2, 45]
+courier_service-1   | INFO:     172.18.0.6:58592 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 7: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 6: 35 -> 22 = [35, 22]
+courier_service-1   | INFO:     172.18.0.8:56488 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.6:58602 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 10] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/10/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 9] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 9] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/9/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 8] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 8] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/8/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 7] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+courier_service-1   | Ответ assign для заказа 6: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 5: 18 -> 49 = [18, 49]
+courier_service-1   | INFO:     172.18.0.6:58608 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 5: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 4: 1 -> 26 = [1, 26]
+courier_service-1   | INFO:     172.18.0.6:58610 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 4: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 3: 34 -> 3 = [34, 3]
+courier_service-1   | INFO:     172.18.0.8:56502 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 7] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/7/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 6] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 6] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/6/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 5] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 5] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/5/assign HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.6:58626 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 3: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 2: 17 -> 30 = [17, 30]
+courier_service-1   | INFO:     172.18.0.6:58636 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 2: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 1: 0 -> 7 = [0, 7]
+courier_service-1   | INFO:     172.18.0.6:58646 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 1: 200 - {"status":"no_couriers_available"}
+courier_service-1   | INFO:     172.18.0.8:56518 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:56532 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     | [Order 4] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 4] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/4/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 3] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/3/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 2] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+courier_service-1   | Найдено 20 заказов без курьеров
+courier_service-1   | Маршрут для заказа 20: 23 -> 44 = [23, 44]
+courier_service-1   | INFO:     172.18.0.6:58660 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 20: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 19: 6 -> 21 = [6, 21]
+courier_service-1   | INFO:     172.18.0.6:58662 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 19: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 18: 39 -> 48 = [39, 48]
+courier_service-1   | INFO:     172.18.0.6:58664 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 18: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 17: 22 -> 25 = [22, 25]
+courier_service-1   | INFO:     172.18.0.6:58670 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 17: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 16: 5 -> 2 = [5, 2]
+courier_service-1   | INFO:     172.18.0.6:58684 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 2] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/2/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 1] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46756 - "POST /api/orders/1/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:60000 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46770 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 20] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+courier_service-1   | Ответ assign для заказа 16: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 15: 38 -> 29 = [38, 29]
+courier_service-1   | INFO:     172.18.0.6:58696 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 15: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 14: 21 -> 6 = [21, 6]
+courier_service-1   | INFO:     172.18.0.6:58704 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 14: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 13: 4 -> 33 = [4, 33]
+courier_service-1   | INFO:     172.18.0.6:58712 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 13: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 12: 37 -> 10 = [37, 10]
+courier_service-1   | INFO:     172.18.0.6:58728 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 12: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 11: 20 -> 37 = [20, 37]
+courier_service-1   | INFO:     172.18.0.6:58742 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 11: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 10: 3 -> 14 = [3, 14]
+courier_service-1   | INFO:     172.18.0.6:58756 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 10: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 9: 36 -> 41 = [36, 41]
+courier_service-1   | INFO:     172.18.0.6:58766 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 9: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 8: 19 -> 18 = [19, 18]
+courier_service-1   | INFO:     172.18.0.6:58776 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 8: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 7: 2 -> 45 = [2, 45]
+courier_service-1   | INFO:     172.18.0.6:58788 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 7: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 6: 35 -> 22 = [35, 22]
+courier_service-1   | INFO:     172.18.0.6:58792 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 6: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 5: 18 -> 49 = [18, 49]
+courier_service-1   | INFO:     172.18.0.6:58800 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 5: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 4: 1 -> 26 = [1, 26]
+courier_service-1   | INFO:     172.18.0.6:58816 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 4: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 3: 34 -> 3 = [34, 3]
+courier_service-1   | INFO:     172.18.0.6:58826 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 3: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 2: 17 -> 30 = [17, 30]
+courier_service-1   | INFO:     172.18.0.6:58828 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 2: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 1: 0 -> 7 = [0, 7]
+courier_service-1   | INFO:     172.18.0.6:58834 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 1: 200 - {"status":"no_couriers_available"}
+courier_service-1   | INFO:     172.18.0.8:56544 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:56558 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Найдено 20 заказов без курьеров
+courier_service-1   | Маршрут для заказа 20: 23 -> 44 = [23, 44]
+courier_service-1   | INFO:     172.18.0.6:58836 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 20: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 19: 6 -> 21 = [6, 21]
+order_service-1     | [Order 20] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/20/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 19] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 19] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/19/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 18] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 18] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/18/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 17] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+courier_service-1   | INFO:     172.18.0.6:58844 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 19: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 18: 39 -> 48 = [39, 48]
+courier_service-1   | INFO:     172.18.0.6:58856 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 17] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/17/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 16] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 16] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/16/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 15] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 15] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/15/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 14] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 14] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/14/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 13] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 13] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/13/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 12] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 12] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/12/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 11] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 11] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/11/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 10] Found 5 couriers
+courier_service-1   | Ответ assign для заказа 18: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 17: 22 -> 25 = [22, 25]
+courier_service-1   | INFO:     172.18.0.6:58860 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 17: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 16: 5 -> 2 = [5, 2]
+courier_service-1   | INFO:     172.18.0.6:58862 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 16: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 15: 38 -> 29 = [38, 29]
+courier_service-1   | INFO:     172.18.0.6:58872 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 15: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 14: 21 -> 6 = [21, 6]
+courier_service-1   | INFO:     172.18.0.6:58884 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 14: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 13: 4 -> 33 = [4, 33]
+courier_service-1   | INFO:     172.18.0.6:58898 - "GET /api/couriers/ HTTP/1.1" 200 OK
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 10] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/10/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 9] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 9] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/9/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 8] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 8] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/8/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 7] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+courier_service-1   | Ответ assign для заказа 13: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 12: 37 -> 10 = [37, 10]
+courier_service-1   | INFO:     172.18.0.6:58912 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 12: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 11: 20 -> 37 = [20, 37]
+courier_service-1   | INFO:     172.18.0.6:58926 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 11: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 10: 3 -> 14 = [3, 14]
+courier_service-1   | INFO:     172.18.0.6:58928 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 10: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 9: 36 -> 41 = [36, 41]
+courier_service-1   | INFO:     172.18.0.6:58932 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 9: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 8: 19 -> 18 = [19, 18]
+courier_service-1   | INFO:     172.18.0.6:58940 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 8: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 7: 2 -> 45 = [2, 45]
+courier_service-1   | INFO:     172.18.0.6:58954 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 7: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 6: 35 -> 22 = [35, 22]
+courier_service-1   | INFO:     172.18.0.6:58968 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 6: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 5: 18 -> 49 = [18, 49]
+courier_service-1   | INFO:     172.18.0.6:58982 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 5: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 4: 1 -> 26 = [1, 26]
+courier_service-1   | INFO:     172.18.0.6:58992 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 4: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 3: 34 -> 3 = [34, 3]
+courier_service-1   | INFO:     172.18.0.6:59000 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 3: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 2: 17 -> 30 = [17, 30]
+courier_service-1   | INFO:     172.18.0.6:59008 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 2: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 1: 0 -> 7 = [0, 7]
+courier_service-1   | INFO:     172.18.0.6:59014 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 1: 200 - {"status":"no_couriers_available"}
+courier_service-1   | INFO:     172.18.0.8:56574 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:56576 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Найдено 20 заказов без курьеров
+courier_service-1   | Маршрут для заказа 20: 23 -> 44 = [23, 44]
+courier_service-1   | INFO:     172.18.0.6:52754 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 20: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 19: 6 -> 21 = [6, 21]
+courier_service-1   | INFO:     172.18.0.6:52760 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 19: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 18: 39 -> 48 = [39, 48]
+courier_service-1   | INFO:     172.18.0.6:52766 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 18: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 17: 22 -> 25 = [22, 25]
+courier_service-1   | INFO:     172.18.0.6:52772 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 17: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 16: 5 -> 2 = [5, 2]
+courier_service-1   | INFO:     172.18.0.6:52780 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 16: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 15: 38 -> 29 = [38, 29]
+courier_service-1   | INFO:     172.18.0.6:52790 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 15: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 14: 21 -> 6 = [21, 6]
+courier_service-1   | INFO:     172.18.0.6:52800 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 14: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 13: 4 -> 33 = [4, 33]
+courier_service-1   | INFO:     172.18.0.6:52808 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 13: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 12: 37 -> 10 = [37, 10]
+courier_service-1   | INFO:     172.18.0.6:52822 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 12: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 11: 20 -> 37 = [20, 37]
+courier_service-1   | INFO:     172.18.0.6:52834 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 11: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 10: 3 -> 14 = [3, 14]
+courier_service-1   | INFO:     172.18.0.6:52838 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 10: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 9: 36 -> 41 = [36, 41]
+courier_service-1   | INFO:     172.18.0.6:52842 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 9: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 8: 19 -> 18 = [19, 18]
+courier_service-1   | INFO:     172.18.0.6:52848 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 8: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 7: 2 -> 45 = [2, 45]
+courier_service-1   | INFO:     172.18.0.6:52856 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 7: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 6: 35 -> 22 = [35, 22]
+courier_service-1   | INFO:     172.18.0.6:52862 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 6: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 5: 18 -> 49 = [18, 49]
+courier_service-1   | INFO:     172.18.0.6:52872 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 5: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 4: 1 -> 26 = [1, 26]
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 7] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/7/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 6] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 6] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/6/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 5] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+courier_service-1   | INFO:     172.18.0.6:52884 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 4: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 3: 34 -> 3 = [34, 3]
+courier_service-1   | INFO:     172.18.0.6:52886 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 3: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 2: 17 -> 30 = [17, 30]
+courier_service-1   | INFO:     172.18.0.6:52894 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 2: 200 - {"status":"no_couriers_available"}
+courier_service-1   | Маршрут для заказа 1: 0 -> 7 = [0, 7]
+courier_service-1   | INFO:     172.18.0.5:48476 - "GET /metrics HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.6:52900 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | Ответ assign для заказа 1: 200 - {"status":"no_couriers_available"}
+courier_service-1   | INFO:     172.18.0.8:35488 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     172.18.0.8:35498 - "GET /api/couriers/ HTTP/1.1" 200 OK
+courier_service-1   | INFO:     Shutting down
+courier_service-1   | INFO:     Waiting for application shutdown.
+courier_service-1   | INFO:     Application shutdown complete.
+courier_service-1   | INFO:     Finished server process [1]
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 5] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/5/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 4] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 4] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/4/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 3] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/3/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 2] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 2] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/2/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 1] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46770 - "POST /api/orders/1/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:60002 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46186 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 20] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 20] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/20/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 19] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 19] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/19/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 18] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 18] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/18/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 17] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 17] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/17/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 16] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 16] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/16/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 15] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 15] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/15/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 14] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 14] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/14/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 13] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 13] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/13/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 12] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 12] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/12/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 11] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 11] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/11/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 10] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 10] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/10/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 9] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 9] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/9/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 8] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 8] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/8/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 7] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 7] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/7/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 6] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 6] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/6/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 5] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 5] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/5/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 4] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 4] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/4/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 3] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/3/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 2] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 2] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/2/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 1] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46186 - "POST /api/orders/1/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:47694 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46200 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 20] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 20] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/20/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 19] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 19] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/19/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 18] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 18] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/18/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 17] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 17] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/17/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 16] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 16] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/16/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 15] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 15] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/15/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 14] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 14] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/14/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 13] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 13] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/13/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 12] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 12] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/12/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 11] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 11] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/11/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 10] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 10] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/10/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 9] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 9] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/9/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 8] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 8] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/8/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 7] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 7] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/7/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 6] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 6] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/6/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 5] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 5] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/5/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:47698 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 4] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 4] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/4/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 3] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/3/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 2] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 2] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/2/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 1] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46200 - "POST /api/orders/1/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:47706 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46208 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 20] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 20] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/20/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 19] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 19] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/19/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 18] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 18] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/18/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 17] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 17] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/17/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 16] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 16] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/16/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 15] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 15] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/15/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 14] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 14] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/14/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 13] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 13] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/13/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 12] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 12] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/12/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 11] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 11] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/11/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 10] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 10] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/10/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 9] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 9] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/9/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 8] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 8] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/8/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 7] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 7] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/7/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 6] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 6] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/6/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 5] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 5] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/5/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 4] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 4] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/4/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 3] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/3/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 2] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 2] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/2/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 1] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46208 - "POST /api/orders/1/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:47720 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.5:37618 - "GET /metrics HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:46220 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 20] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 20] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/20/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 19] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 19] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/19/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 18] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 18] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/18/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 17] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 17] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/17/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 16] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 16] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/16/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 15] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 15] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/15/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 14] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 14] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/14/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 13] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 13] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/13/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 12] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 12] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/12/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 11] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 11] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/11/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 10] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 10] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/10/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 9] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 9] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/9/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 8] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 8] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/8/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 7] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 7] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/7/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 6] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 6] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/6/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 5] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 5] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/5/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 4] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 4] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/4/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 3] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/3/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 2] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 2] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/2/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 1] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:46220 - "POST /api/orders/1/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:47728 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.7:38952 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | [Order 20] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 20] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/20/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 19] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 19] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/19/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 18] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 18] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/18/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 17] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 17] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/17/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 16] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 16] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/16/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 15] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 15] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/15/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 14] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 14] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/14/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 13] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 13] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/13/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 12] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 12] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/12/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 11] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 11] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/11/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 10] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 10] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/10/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 9] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 9] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/9/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 8] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 8] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/8/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 7] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 7] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/7/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 6] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 6] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/6/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 5] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 5] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/5/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 4] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 4] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/4/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 3] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 3] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/3/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 2] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 2] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/2/assign HTTP/1.1" 200 OK
+order_service-1     | [Order 1] Found 5 couriers
+order_service-1     |   Courier 1: status=delivering
+order_service-1     |   Courier 2: status=delivering
+order_service-1     |   Courier 3: status=delivering
+order_service-1     |   Courier 4: status=delivering
+order_service-1     |   Courier 5: status=delivering
+order_service-1     | [Order 1] No idle couriers available
+order_service-1     | INFO:     172.18.0.7:38952 - "POST /api/orders/1/assign HTTP/1.1" 200 OK
+order_service-1     | INFO:     172.18.0.8:52764 - "GET /api/orders/ HTTP/1.1" 200 OK
+order_service-1     | INFO:     Shutting down
+order_service-1     | INFO:     Waiting for application shutdown.
+order_service-1     | INFO:     Application shutdown complete.
+order_service-1     | INFO:     Finished server process [1]
